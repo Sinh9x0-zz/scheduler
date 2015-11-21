@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+
+<head>
+
+	<meta charset="utf-8">
+	<link rel="stylesheet" type='text/css' href='css/bootstrap.css'>
+	<link rel="stylesheet" type='text/css' href='css/login.css'>
+
+	<title>Scheduler</title>
+
+</head>
+
+<body>
+
+	<div class="container" ng-view=""></div>
+
+	<!-- Load Libraries -->
+	<script src="js/libraries/jquery-2.1.4.min.js"></script>
+	<script src="js/libraries/angular-1.4.7.min.js"></script>
+	<script src="js/libraries/angular-route.min.js"></script>
+ 	<script src="js/libraries/bootstrap.min.js"></script>
+
+	<!-- Dynamic Angular Front End -->
+	<script type='text/javascript' src="js/routes.js"></script>				
+	<script type='text/javascript' src="js/factories/factories.js"></script>		
+	<script type='text/javascript' src="js/controllers/controllers.js"></script>				
+
+</body>
+
+</html>
