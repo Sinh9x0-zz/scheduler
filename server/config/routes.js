@@ -1,21 +1,19 @@
-var users = require('./../controllers/users.js');
-
 module.exports = function(app) {
 
 	app.get('/allUsers', function(req, res) {
-		users.allUsers(req, res);
+		console.log('connect to database');
 	});
 
 	app.post('/addUser', function(req, res){
-		users.addUser(req,res);
+		console.log('connect to database');
 	});
 
 	app.get('/deleteUser/:id', function(req, res){
-		users.deleteUser(req, res);
+		console.log('connect to database');
 	});
 
 	app.post('/authenticateUser', function(req, res){
-		users.authenticateUser(req,res);
+		console.log('connect to database');
 	})
 
 	app.get('/destroySession', function(req, res){
@@ -24,7 +22,7 @@ module.exports = function(app) {
 	});
 
 	app.get('/checkSession', function(req, res){
-		users.maintainUser(req, res);
+		console.log('connect to database');
 	})
 
 };
