@@ -1,8 +1,8 @@
+var employees = require('./../controllers/employees.js');
+
 module.exports = function(app) {
 
-	app.get('/allUsers', function(req, res) {
-		console.log('connect to database');
-	});
+	app.get('/allEmployees', employees.allEmployees);
 
 	app.post('/addUser', function(req, res){
 		console.log('connect to database');
