@@ -5,21 +5,19 @@ module.exports = (function() {
 			var query = "SELECT * FROM employees";
 			connection.query(query, function (err, rows){
 				if (err) 
-					return response.json(err)
+					res.json(err)
 				else
-					return response.json(rows)
+					res.json(rows)
 			})
 		},
 		addEmployee: function(req, res) {
-			connection.query(query, function(err){
-				if (err){
-					return response.json(err)
-				} 	
-				else{
-					var query = "INSERT INTO employees (email, password, first_name, last_name, address, birthday, phone_number, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
-					var values = array(req.body.email, req.body.password, req.body.first_name, req.body.last_name, req.body.address, req.body.birthday, req.body.phone_number);
-				}
-			})
+			console.log(req.body);	
+			var post ={email: req.body.email, password: req.body.password, first_name: req.body.first_name, last_name: req.body.last_name, address: req.body.address, birthday: req.body.birthday, phone_number: req.body.phone_number, created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')};
+
+			var query = connection.query('INSERT INTO employees SET ?', post, function(err, result) {
+				console.log(result);
+			});
+			console.log(query.sql); 
 		}
 	}
 

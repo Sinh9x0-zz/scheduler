@@ -7,8 +7,8 @@ app.factory('userFactory', function($http){
 		});
 	}
 
-	factory.addUser = function(newUser, callback){
-		$http.post('/addUser', newUser).success(function(user){
+	factory.addEmployee = function(newEmployee, callback){
+		$http.post('/addemployee', newEmployee).success(function(user){
 			callback(user);
 		});
 	}

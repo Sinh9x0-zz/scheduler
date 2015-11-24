@@ -8,17 +8,6 @@ app.controller('usersController', function(sessionFactory, userFactory) {
 
 	this.currentUser = {};
 
-	_this.addUser = function(){
-		userFactory.addUser(_this.newUser, function(){
-			userFactory.getUsers(function(users){
-				_this.users = users;
-			});
-
-			_this.newUser = {};
-
-		});
-	}
-
 	_this.removeUser = function(id){
 		userFactory.removeUser(id, function(){
 			userFactory.getUsers(function(users){
@@ -76,11 +65,14 @@ app.controller('loginController', function(sessionFactory, userFactory) {
 
 });
 
-app.controller('addEmployeeController', function(){
+app.controller('addEmployeeController', function(userFactory){
 	var _this = this;
-
-	_this.addEmployee = function(new){
-		console.log(new);
+	_this.newEmployee = {}
+	_this.addEmployee = function(){
+		console.log(_this.newEmployee);
+		userFactory.addEmployee(_this.newEmployee, function(){
+			console.log('success!');
+		})
 	}
 
 });
