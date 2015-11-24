@@ -25,6 +25,18 @@ app.factory('employeeFactory', function($http){
 		});
 	}
 
+	factory.showAllEmployees = function(callback){
+		$http.get('/allEmployees').success(function(showAll){
+			callback(showAll);
+		})
+	}
+
+	factory.getOneEmployee = function(oneEmpid, callback){
+		$http.get('/oneEmployee/' + oneEmpid).success(function(oneEmployee){
+			callback(oneEmployee);
+		})
+	}
+
 	return factory;
 })
 

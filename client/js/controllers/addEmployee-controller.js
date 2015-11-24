@@ -7,5 +7,4 @@ app.controller('addEmployeeController', function(employeeFactory){
 			console.log('success!');
 		})
 	}
-
 });
