@@ -7,16 +7,16 @@ app.config(function ($routeProvider) {
         controller: 'loginController as lgnCtrl',
         css: 'css/login.css'
     })
-    .when('/dashboard',{
-        templateUrl: 'partials/main.html'
+    .when('/dashboard', {
+        templateUrl: 'partials/dashboard.html'
     })
-    .when('/partial1',{
-        templateUrl: 'partials/partial1.html'
+    .when('/myrequests',{
+        templateUrl: 'partials/myrequests.html'
     })
-    .when('/partial2',{
-        templateUrl: 'partials/partial2.html'
+    .when('/myaccount', {
+        templateUrl: 'partials/myaccount.html'
     })
     .otherwise({
-        redirectTo: '/'
-    })
+        redirectTo: '/dashboard'
+    });
 });
