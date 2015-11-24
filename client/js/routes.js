@@ -5,10 +5,13 @@ app.config(function ($routeProvider) {
     .when('/', {
         templateUrl: 'partials/login.html',
         controller: 'loginController',
-        controllerAs: 'lgnCtrl'
+        controllerAs: 'lgnCtrl',
+        css: 'css/login.css'
     })
     .when('/dashboard', {
-        templateUrl: 'partials/dashboard.html'
+        templateUrl: 'partials/dashboard.html',
+        controller: 'scheduleController',
+        controllerAs: 'schCtrl'
     })
     .when('/myrequests',{
         templateUrl: 'partials/myrequests.html'
@@ -20,6 +23,15 @@ app.config(function ($routeProvider) {
     })
     .when('/myaccount', {
         templateUrl: 'partials/myaccount.html'
+    })
+    .when('/admin/dashboard', {
+        templateUrl: 'partials/admin-dashboard.html'
+    })
+    .when('/addshift', {
+        templateUrl: 'partials/addshift.html'
+    })
+    .when('/showallemployees', {
+        templateUrl: 'partials/showallemployees.html'
     })
     .otherwise({
         redirectTo: '/dashboard'

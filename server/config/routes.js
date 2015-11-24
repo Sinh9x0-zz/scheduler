@@ -1,4 +1,5 @@
 var employees = require('./../controllers/employees.js');
+var shifts = require('./../controllers/shifts.js');
 
 module.exports = function(app) {
 
@@ -10,9 +11,7 @@ module.exports = function(app) {
 		console.log('connect to database');
 	});
 
-	app.post('/authenticateUser', function(req, res){
-		employees.login(req, res);
-	})
+	app.post('/authenticateUser', employees.login);
 
 	app.get('/destroySession', function(req, res){
 		req.session.destroy();
