@@ -9,6 +9,10 @@ module.exports = function(app) {
 		employees.getOneEmployee(req,res);
 	});
 
+	app.delete('/deleteEmployee/:id', function(req,res){
+		employees.deleteEmployee(req,res);
+	})
+
 	app.post('/addEmployee', employees.addEmployee);
 
 	app.get('/deleteUser/:id', function(req, res){

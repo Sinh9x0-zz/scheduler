@@ -43,6 +43,17 @@ module.exports = (function() {
 			console.log(query.sql); 
 		},
 
+		deleteEmployee: function(req, res) {
+			var query = "DELETE FROM employees WHERE id = ?";
+			connection.query(query, req.params.id, function (err, rows){
+				if (err) 
+					res.json(err)
+				else {
+					res.json(rows)
+				}
+			})
+		},
+
 		login: function(req,res){
 			var query = "SELECT email, password, first_name, last_name FROM employees where email = '"+req.body.email+"'AND password = '"+req.body.password+"';"
 			connection.query(query, function (err, rows){
