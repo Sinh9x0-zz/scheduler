@@ -19,7 +19,8 @@ app.config(function ($routeProvider) {
     .when('/addemployee',{
         templateUrl: 'partials/addemployee.html',
         controller: 'addEmployeeController',
-        controllerAs: 'addCtrl'
+        controllerAs: 'addCtrl',
+        css: 'css/addemployee.css'
     })
     .when('/myaccount', {
         templateUrl: 'partials/myaccount.html',
