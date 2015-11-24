@@ -1,6 +1,15 @@
 app.factory('sessionFactory', function($http){
 	var session = {};
 
+	session.destroySession = function(callback){
+		$http.get('/destroySession').success(function(){
+			session.logoutMessage = 'You have logged out';
+			callback();
+		});
+	}
+	session.getLogOutMessage = function(callback){
+		callback(session.logoutMessage);
+	}
 	session.getErrors = function(callback){
 		callback(session.errors);
 	}
@@ -11,17 +20,12 @@ app.factory('sessionFactory', function($http){
 				session.errors = ' Require log in';
 				callback(session.errors);
 			} else {
-				session.errors = {};
+				delete session.errors;
 				callback(response);
 			}
 		})
  	}
 
-	session.destroySession = function(){
-		$http.get('/destroySession').success(function(){
-			console.log('session ended');
-		});
-	}
 
 	return session;
 })
