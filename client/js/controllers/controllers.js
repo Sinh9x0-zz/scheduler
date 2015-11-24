@@ -60,7 +60,7 @@ app.controller('loginController', function(sessionFactory, userFactory) {
 		userFactory.authenticate(_this.user, function(sessionUser){
 			if(!sessionUser){
 				_this.feedback = "Invalid Credentials";
-			} else {
+			} else {				
 				_this.feedback = "You've been logged in successfully!";
 				session.storeUser(sessionUser);
 				session.getUser(function(sUser){

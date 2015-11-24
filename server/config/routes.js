@@ -13,7 +13,7 @@ module.exports = function(app) {
 	});
 
 	app.post('/authenticateUser', function(req, res){
-		console.log('connect to database');
+		employees.login(req, res);
 	})
 
 	app.get('/destroySession', function(req, res){
