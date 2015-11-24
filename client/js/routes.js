@@ -4,7 +4,8 @@ app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
         templateUrl: 'partials/login.html',
-        controller: 'loginController as lgnCtrl',
+        controller: 'loginController',
+        controllerAs: 'lgnCtrl',
         css: 'css/login.css'
     })
     .when('/dashboard', {

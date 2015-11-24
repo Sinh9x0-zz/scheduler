@@ -57,6 +57,7 @@ app.controller('loginController', function(sessionFactory, userFactory) {
 	var _this = this;
 
 	_this.login = function(){
+		console.log('logging in');
 		userFactory.authenticate(_this.user, function(sessionUser){
 			if(!sessionUser){
 				_this.feedback = "Invalid Credentials";
