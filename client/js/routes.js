@@ -22,7 +22,9 @@ app.config(function ($routeProvider) {
         controllerAs: 'addCtrl'
     })
     .when('/myaccount', {
-        templateUrl: 'partials/myaccount.html'
+        templateUrl: 'partials/myaccount.html',
+        controller: 'accountController',
+        controllerAs: 'accCtrl'
     })
     .when('/admin/dashboard', {
         templateUrl: 'partials/admin-dashboard.html'
