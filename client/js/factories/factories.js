@@ -36,9 +36,18 @@ app.factory('sessionFactory', function($http){
 	session.storeUser = function(user){
 		session.user = user;
 	}
+	session.getErrors = function(callback){
+		callback(session.errors);
+	}
 
 	session.getUser = function(callback){
-		callback(session.user);
+		if(Object.getOwnPropertyNames(session.user).length === 0){
+			session.errors = ' Require log in';
+			callback(session.errors);
+		} else {
+			session.errors = {};
+			callback(session.user);
+		}
 	}
 
 	session.destroySession = function(){

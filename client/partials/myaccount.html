@@ -13,14 +13,15 @@
       </div>
     </nav>
 
+<div ng-controller = "accountController as accCtrl">
+  <h3>My account </h3>
 
-<h3>My account </h3>
 
-
-<h4>First name: </h4>
-<h4>Last name: </h4>
-<h4>Email: </h4>  <a href =""> Edit </a>
-<h4>Password: ************</h4> <a href =""> Edit </a>
-<h4>Phone number: (206)123-1234 </h4>
+  <h4>First name: {{accCtrl.currentUserData[0].first_name}}</h4>
+  <h4>Last name: {{accCtrl.currentUserData[0].last_name}}</h4>
+  <h4>Email: {{accCtrl.currentUserData[0].email}}</h4>  <a href =""> Edit </a>
+  <h4>Password: {{accCtrl.currentUserData[0].password}}</h4> <a href =""> Edit </a>
+  <h4>Phone number: (206)123-1234 </h4>
+</div>
 
 

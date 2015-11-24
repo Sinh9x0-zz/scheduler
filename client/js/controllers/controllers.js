@@ -41,22 +41,33 @@ app.controller('usersController', function(sessionFactory, userFactory) {
 	_this.checkSession();
 
 });
-
-app.controller('loginController', function(sessionFactory, userFactory) {
+app.controller('accountController', function(sessionFactory, userFactory){
 	var _this = this;
 
+	sessionFactory.getUser(function(currentUser){
+		_this.currentUserData = currentUser;
+		console.log(_this.currentUserData);
+	})
+})
+app.controller('loginController', function(sessionFactory, userFactory, $location) {
+	var _this = this;
+	sessionFactory.getErrors(function(response){
+		_this.sessionErrors = response;
+	})
 	_this.login = function(){
-		console.log('logging in');
 		userFactory.authenticate(_this.user, function(sessionUser){
-			if(!sessionUser){
+			console.log(sessionUser);
+			if(sessionUser.length == 0){ // couldnt find user 
 				_this.feedback = "Invalid Credentials";
 			} else {				
 				_this.feedback = "You've been logged in successfully!";
-				session.storeUser(sessionUser);
-				session.getUser(function(sUser){
+				console.log("You've been logged in successfully!");
+				sessionFactory.storeUser(sessionUser);
+				sessionFactory.getUser(function(sUser){
 					_this.currentUser = sUser;
 				}); 
 				_this.user = {};
+				$location.path('/dashboard');
 			}
 		});
 	}
@@ -76,12 +87,18 @@ app.controller('addEmployeeController', function(userFactory){
 	}
 
 });
-app.controller('myScheduleController', function(sessionFactory, userFactory, myScheduleFactory) {
+app.controller('myScheduleController', function(sessionFactory, userFactory, myScheduleFactory, $location) {
 	var _this = this;
-
-	myScheduleFactory.getMySchedule(1, function(mySchedule){
-		_this.mySchedule = mySchedule;
-	});
+	sessionFactory.getUser(function(currentUser){
+		_this.currentUserData = currentUser;
+		if(currentUser == ' Require log in') { //if not log in yet
+			$location.path('/');
+		}
+	})
+	_this.currentUser = _this.currentUserData[0].first_name + " " + _this.currentUserData[0].last_name;
+	// myScheduleFactory.getMySchedule(1, function(mySchedule){
+	// 	_this.mySchedule = mySchedule;
+	// });
 
 });
 
