@@ -23,4 +23,8 @@ module.exports = function(app) {
 		console.log('connect to database');
 	})
 
+	app.get('/getMySchedule/:id', function(req, res){
+		shifts.employeeShift(req,res);
+	});
+
 };

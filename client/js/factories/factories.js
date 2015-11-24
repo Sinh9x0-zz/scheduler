@@ -55,3 +55,17 @@ app.factory('sessionFactory', function($http){
 
 	return session;
 })
+
+app.factory('myScheduleFactory', function($http){
+	var factory = {};
+
+	factory.getMySchedule = function(id, callback){
+		console.log(id);
+		$http.get('/getMySchedule/' + id).success(function(mySchedule){
+			callback(mySchedule);
+		});	
+	}
+	
+
+	return factory;
+})

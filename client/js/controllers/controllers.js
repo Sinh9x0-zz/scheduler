@@ -76,3 +76,12 @@ app.controller('addEmployeeController', function(userFactory){
 	}
 
 });
+app.controller('myScheduleController', function(sessionFactory, userFactory, myScheduleFactory) {
+	var _this = this;
+
+	myScheduleFactory.getMySchedule(1, function(mySchedule){
+		_this.mySchedule = mySchedule;
+	});
+
+});
+

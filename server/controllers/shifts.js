@@ -12,8 +12,15 @@ module.exports = (function() {
 		},
 
 		employeeShift: function(req, res){
-			//req.body should include user information
-			//var query = "SELECT * FROM employees where email";
+			var query = connection.query("select * from employees where id =?", req.params.id, function(err, records){					
+				console.log(query.sql);
+
+				if (err){
+					res.json(err);
+				} else {
+					res.json(records);
+				}
+			});
 		}
 	}
 
