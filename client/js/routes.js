@@ -5,14 +5,18 @@ app.config(function ($routeProvider) {
     .when('/', {
         templateUrl: 'partials/login.html',
         controller: 'loginController',
-        controllerAs: 'lgnCtrl',
-        css: 'css/login.css'
+        controllerAs: 'lgnCtrl'
     })
     .when('/dashboard', {
         templateUrl: 'partials/dashboard.html'
     })
     .when('/myrequests',{
         templateUrl: 'partials/myrequests.html'
+    })
+    .when('/addemployee',{
+        templateUrl: 'partials/adduser.html',
+        controller: 'addEmployeeController',
+        controllerAs: 'addCtrl'
     })
     .when('/myaccount', {
         templateUrl: 'partials/myaccount.html'

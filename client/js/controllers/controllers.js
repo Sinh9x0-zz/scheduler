@@ -75,3 +75,12 @@ app.controller('loginController', function(sessionFactory, userFactory) {
 	this.currentUser = {};
 
 });
+
+app.controller('addEmployeeController', function(){
+	var _this = this;
+
+	_this.addEmployee = function(new){
+		console.log(new);
+	}
+
+});

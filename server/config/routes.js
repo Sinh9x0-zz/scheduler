@@ -4,9 +4,7 @@ module.exports = function(app) {
 
 	app.get('/allEmployees', employees.allEmployees);
 
-	app.post('/addUser', function(req, res){
-		console.log('connect to database');
-	});
+	app.post('/addEmployee', employees.addEmployee);
 
 	app.get('/deleteUser/:id', function(req, res){
 		console.log('connect to database');
