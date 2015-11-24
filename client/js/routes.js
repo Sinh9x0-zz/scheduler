@@ -30,6 +30,9 @@ app.config(function ($routeProvider) {
     .when('/addshift', {
         templateUrl: 'partials/addshift.html'
     })
+    .when('/showallemployees', {
+        templateUrl: 'partials/showallemployees.html'
+    })
     .otherwise({
         redirectTo: '/dashboard'
     });
