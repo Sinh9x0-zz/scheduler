@@ -44,13 +44,22 @@ module.exports = (function() {
 		},
 
 		login: function(req,res){
-			var query = "SELECT email, password, first_name, last_name FROM employees where email = '" + req.body.email + "';";
+			var query = "SELECT email, password, first_name, last_name FROM employees where email = '"+req.body.email+"'AND password = '"+req.body.password+"';"
 			connection.query(query, function (err, rows){
 				if (err) 
 					res.json(err)
 				else
+					req.session.user = rows;
 					res.json(rows)
 			})
+		},
+
+		retrieveUser: function(req,res){
+			if(req.session.user){
+				res.json(req.session.user)
+			} else {
+				res.json('havent logged in')
+			}
 		}
 	}
 

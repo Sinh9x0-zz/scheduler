@@ -11,7 +11,7 @@ module.exports = (function() {
 		},
 
 		employeeShift: function(req, res){
-			var query = connection.query("select * from employees where id =?", req.params.id, function(err, records){					
+			var query = connection.query("select * from employees where id = ?", req.params.id, function(err, records){					
 				if (err){
 					res.json(err);
 				} else {

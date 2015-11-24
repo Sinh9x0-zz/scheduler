@@ -23,7 +23,8 @@ module.exports = function(app) {
 	});
 
 	app.get('/checkSession', function(req, res){
-		console.log('connect to database');
+		console.log('here');
+		employees.retrieveUser(req,res);
 	})
 
 	app.get('/getMySchedule/:id', function(req, res){
