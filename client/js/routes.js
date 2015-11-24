@@ -4,19 +4,24 @@ app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
         templateUrl: 'partials/login.html',
-        controller: 'loginController as lgnCtrl',
-        css: 'css/login.css'
+        controller: 'loginController',
+        controllerAs: 'lgnCtrl'
     })
-    .when('/dashboard',{
-        templateUrl: 'partials/main.html'
+    .when('/dashboard', {
+        templateUrl: 'partials/dashboard.html'
     })
-    .when('/partial1',{
-        templateUrl: 'partials/partial1.html'
+    .when('/myrequests',{
+        templateUrl: 'partials/myrequests.html'
     })
-    .when('/partial2',{
-        templateUrl: 'partials/partial2.html'
+    .when('/addemployee',{
+        templateUrl: 'partials/addemployee.html',
+        controller: 'addEmployeeController',
+        controllerAs: 'addCtrl'
+    })
+    .when('/myaccount', {
+        templateUrl: 'partials/myaccount.html'
     })
     .otherwise({
-        redirectTo: '/'
-    })
+        redirectTo: '/dashboard'
+    });
 });

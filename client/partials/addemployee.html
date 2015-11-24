@@ -1,0 +1,55 @@
+
+<h1 class="text-center">Add newEmployee Employee</h1>
+
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="email">Email</label>
+			<div class="col-md-3">
+				<input type="email" class="form-control" id="email" ng-model="addCtrl.newEmployee.email">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="password">Password</label>
+			<div class="col-md-3">
+				<input type="password" class="form-control" id="password" ng-model="addCtrl.newEmployee.password">
+			</div>
+			
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="cpassword">Confirm Password</label>
+			<div class="col-md-3">
+				<input type="password" class="form-control" id="cpassword" ng-model="addCtrl.newEmployee.cpassword">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="first_name">First Name</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="first_name" ng-model="addCtrl.newEmployee.first_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="last_name">Last Name</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="last_name" ng-model="addCtrl.newEmployee.last_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="address">Address</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="address" ng-model="addCtrl.newEmployee.address">			
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="birthday">Birthday</label>
+			<div class="col-md-3">
+				<input type="date" class="form-control" id="birthday" ng-model="addCtrl.newEmployee.birthday">		
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="phone_number">Phone Number  - Format: ###-###-####</label>
+			<div class="col-md-3">
+				<input type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' class="form-control" id="phone_number" ng-model="addCtrl.newEmployee.phone_number">
+			</div>
+		</div>
+		<button class="col-md-3 col-md-push-5 btn-sm btn-primary" ng-click="addCtrl.addEmployee(newEmployee)">Add User</button>
+	</form>

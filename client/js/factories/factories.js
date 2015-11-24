@@ -7,8 +7,8 @@ app.factory('userFactory', function($http){
 		});
 	}
 
-	factory.addUser = function(newUser, callback){
-		$http.post('/addUser', newUser).success(function(user){
+	factory.addEmployee = function(newEmployee, callback){
+		$http.post('/addemployee', newEmployee).success(function(user){
 			callback(user);
 		});
 	}
@@ -54,4 +54,18 @@ app.factory('sessionFactory', function($http){
 	}
 
 	return session;
+})
+
+app.factory('myScheduleFactory', function($http){
+	var factory = {};
+
+	factory.getMySchedule = function(id, callback){
+		console.log(id);
+		$http.get('/getMySchedule/' + id).success(function(mySchedule){
+			callback(mySchedule);
+		});	
+	}
+	
+
+	return factory;
 })

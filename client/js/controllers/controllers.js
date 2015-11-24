@@ -8,17 +8,6 @@ app.controller('usersController', function(sessionFactory, userFactory) {
 
 	this.currentUser = {};
 
-	_this.addUser = function(){
-		userFactory.addUser(_this.newUser, function(){
-			userFactory.getUsers(function(users){
-				_this.users = users;
-			});
-
-			_this.newUser = {};
-
-		});
-	}
-
 	_this.removeUser = function(id){
 		userFactory.removeUser(id, function(){
 			userFactory.getUsers(function(users){
@@ -57,6 +46,7 @@ app.controller('loginController', function(sessionFactory, userFactory) {
 	var _this = this;
 
 	_this.login = function(){
+		console.log('logging in');
 		userFactory.authenticate(_this.user, function(sessionUser){
 			if(!sessionUser){
 				_this.feedback = "Invalid Credentials";
@@ -74,3 +64,24 @@ app.controller('loginController', function(sessionFactory, userFactory) {
 	this.currentUser = {};
 
 });
+
+app.controller('addEmployeeController', function(userFactory){
+	var _this = this;
+	_this.newEmployee = {}
+	_this.addEmployee = function(){
+		console.log(_this.newEmployee);
+		userFactory.addEmployee(_this.newEmployee, function(){
+			console.log('success!');
+		})
+	}
+
+});
+app.controller('myScheduleController', function(sessionFactory, userFactory, myScheduleFactory) {
+	var _this = this;
+
+	myScheduleFactory.getMySchedule(1, function(mySchedule){
+		_this.mySchedule = mySchedule;
+	});
+
+});
+
