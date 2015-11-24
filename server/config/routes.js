@@ -5,6 +5,10 @@ module.exports = function(app) {
 
 	app.get('/allEmployees', employees.allEmployees);
 
+	app.get('/oneEmployee/:id',function(req,res){
+		employees.getOneEmployee(req,res);
+	});
+
 	app.post('/addEmployee', employees.addEmployee);
 
 	app.get('/deleteUser/:id', function(req, res){
@@ -26,5 +30,6 @@ module.exports = function(app) {
 	app.get('/getMySchedule/:id', function(req, res){
 		shifts.employeeShift(req,res);
 	});
+
 
 };

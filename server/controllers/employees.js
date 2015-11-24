@@ -5,8 +5,21 @@ module.exports = (function() {
 			connection.query(query, function (err, rows){
 				if (err) 
 					res.json(err)
-				else
+				else {
+					console.log(rows)
 					res.json(rows)
+				}
+			})
+		},
+
+		getOneEmployee: function(req, res) {
+			var query = "SELECT * FROM employees WHERE id = ?";
+			connection.query(query, req.params.id, function (err, rows){
+				if (err) 
+					res.json(err)
+				else {
+					res.json(rows)
+				}
 			})
 		},
 		
