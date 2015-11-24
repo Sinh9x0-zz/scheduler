@@ -1,12 +1,12 @@
 <admin-navbar></admin-navbar>
 
 <h1> Edit employee</h1>
-{{editEmpCtrl.oneEmployee.first_name}}
-
 <div>
-	<h2 ng-bind='editEmpCtrl.oneEmployee'></h2>
-	<p><strong>First name:</strong> <span ng-bind='editEmpCtrl.oneEmployee.first_name'></span></p>
-	<p><strong>Last name:</strong> <span ng-bind='editEmpCtrl.oneEmployee.last_name'></span></p>
-	<p><strong>Email:</strong> <span ng-bind='editEmpCtrl.oneEmployee.email'></span></p>
-	<p><strong>Phone Number: </strong><span ng-bind='editEmpCtrl.oneEmployee.phone_number'></span></p>
+	<p><strong>First name:</strong> <span ng-bind='editEmpCtrl.oneEmployee[0].first_name'></span></p>
+	<p><strong>Last name:</strong> <span ng-bind='editEmpCtrl.oneEmployee[0].last_name'></span></p>
+	<p><strong>Email:</strong> <span ng-bind='editEmpCtrl.oneEmployee[0].email'></span></p>
+	<p><strong>Phone Number: </strong><span ng-bind='editEmpCtrl.oneEmployee[0].phone_number'></span></p>
+
+ <button><a href ='' ng-click ='editEmpCtrl.deleteEmployee(editEmpCtrl.oneEmployee[0].id) '> Delete employee </button>
 </div>
+
