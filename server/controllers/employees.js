@@ -36,8 +36,17 @@ module.exports = (function() {
 				if (err) 
 					res.json(err)
 				else
+					req.session.user = rows;
 					res.json(rows)
 			})
+		},
+
+		retrieveUser: function(req,res){
+			if(req.session.user){
+				res.json(req.session.user)
+			} else {
+				res.json('havent logged in')
+			}
 		}
 	}
 
