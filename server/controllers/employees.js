@@ -1,4 +1,3 @@
-
 module.exports = (function() {
 	return {
 		allEmployees: function(req, res) {
@@ -10,16 +9,29 @@ module.exports = (function() {
 					res.json(rows)
 			})
 		},
+		
 		addEmployee: function(req, res) {
-			console.log(req.body);	
-			var post ={email: req.body.email, password: req.body.password, first_name: req.body.first_name, last_name: req.body.last_name, address: req.body.address, birthday: req.body.birthday, phone_number: req.body.phone_number, created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')};
+			var post = {
+				email: req.body.email, 
+				password: req.body.password, 
+				first_name: req.body.first_name,
+				last_name: req.body.last_name, 
+				address: req.body.address, 
+				birthday: req.body.birthday, 
+				phone_number: req.body.phone_number, 
+				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
+				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
+			};
+
 			var query = connection.query('INSERT INTO employees SET ?', post, function(err, result) {
 				console.log(result);
 			});
+
 			console.log(query.sql); 
 		},
+
 		login: function(req,res){
-			var query = "SELECT email, password, first_name, last_name FROM employees where email = '"+req.body.email+"';";
+			var query = "SELECT email, password, first_name, last_name FROM employees where email = '" + req.body.email + "';";
 			connection.query(query, function (err, rows){
 				if (err) 
 					res.json(err)

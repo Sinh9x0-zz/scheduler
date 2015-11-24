@@ -1,23 +1,6 @@
+<employee-navbar></employee-navbar>
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#/dashboard">My Schedule</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#/myrequests">My Requests</a></li>
-            <li><a href="#/myaccount">My Account</a></li>
-            <li><a href="">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div ng-controller='myScheduleController as myschCtrl'>
-
-	<!-- <h2>Welcome <span ng-bind='myschCtrl.sessionUser'></span>!</h2> -->
-
+<div>
 	<h3> Welcome, user </h3>
 	<h3> My schedule </h3>
 	<table class="table table-hover">
@@ -54,20 +37,10 @@
 				<td>8:00 AM</td>
 				<td> [  x  ]</td> 
 			</tr>
-
-	<!-- <tr ng-repeat='task in tskCtrl.tasks'>
-	      <td ng-bind='task.user'></td>
-	      <td><a href='#/show/{{task._id}}' ng-bind='task.task'></a></td>
-	      <td ng-bind='task.deadline | date: "mediumDate"'></td>
-	      <td><button ng-click='tskCtrl.like(task._id)' 
-	      ng-bind='task.likes'>0</button></td> --> 
-	    </tr>
-	</tbody>
-</table>
-
-<button> Add to Google Calendar </button>
+		</tbody>
+	</table>
+	<button> Add to Google Calendar </button>
 </div>
-
 
 <div>
 <h3> Available shifts </h3>
