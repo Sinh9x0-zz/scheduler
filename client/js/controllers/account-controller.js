@@ -1,4 +1,4 @@
-app.controller('accountController', function(sessionFactory, userFactory){
+app.controller('accountController', function(sessionFactory, employeeFactory){
  	var _this = this;
  
 	sessionFactory.getUser(function(currentUser){
