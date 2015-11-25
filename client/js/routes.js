@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute']); 
+var app = angular.module('app', ['ngRoute', 'ui.calendar']); 
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -28,7 +28,10 @@ app.config(function ($routeProvider) {
         controllerAs: 'accCtrl'
     })
     .when('/admin/dashboard', {
-        templateUrl: 'partials/admin-dashboard.html'
+        templateUrl: 'partials/admin-dashboard.html',
+        controller: 'adminController',
+        controllerAs: 'adminCtrl',
+        css: 'css/fullcalendar.min.css'
     })
     .when('/addshift', {
         templateUrl: 'partials/addshift.html'
