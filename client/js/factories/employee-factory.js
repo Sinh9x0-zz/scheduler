@@ -43,6 +43,13 @@ app.factory('employeeFactory', function($http){
 		});
 	}
 
+	factory.editEmployee = function(employee, callback){
+		$http.post('/editEmployee/', employee).success(function(updatedEmployee){
+			callback(updatedEmployee);
+		})
+
+	}
+
 	return factory;
 })
 

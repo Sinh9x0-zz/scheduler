@@ -35,15 +35,39 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-2 col-md-offset-3 label-control" for="address">Address</label>
+			<label class="col-md-2 col-md-offset-3 label-control" for="address1">Address 1</label>
 			<div class="col-md-3">
-				<input type="text" class="form-control" id="address" ng-model="addCtrl.newEmployee.address">			
+				<input type="text" class="form-control" id="address1" ng-model="addCtrl.newEmployee.address1">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="address2">Address 2</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="address2" ng-model="addCtrl.newEmployee.address2">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="city">City</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="city" ng-model="addCtrl.newEmployee.city">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="state">State</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" maxlength="2" id="state" ng-model="addCtrl.newEmployee.state">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 col-md-offset-3 label-control" for="zip">Zip</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="zip" ng-model="addCtrl.newEmployee.zip">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-2 col-md-offset-3 label-control" for="birthday">Birthday</label>
 			<div class="col-md-3">
-				<input type="date" class="form-control" id="birthday" ng-model="addCtrl.newEmployee.birthday">		
+				<input type="date" class="form-control" id="birthday" ng-model="addCtrl.newEmployee.birthday">
 			</div>
 		</div>
 		<div class="form-group">
@@ -52,29 +76,6 @@
 				<input type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' class="form-control" id="phone_number" ng-model="addCtrl.newEmployee.phone_number">
 			</div>
 		</div>
-		<div class="form-group checkboxdays">
-			<label class="col-md-2 col-md-offset-3 label-control AvailableDays">Available Days: </label>
-			<div class="col-md-5 col-md-offset-3">
-				<label><input type="checkbox" id="mon"> Mon</label>
-				<label><input type="checkbox" id="tue"> Tue</label>
-				<label><input type="checkbox" id="wed"> Wed</label>
-				<label><input type="checkbox" id="thu"> Thu</label>
-				<label><input type="checkbox" id="fri"> Fri</label>
-				<label><input type="checkbox" id="sat"> Sat</label>
-				<label><input type="checkbox" id="sun"> Sun</label>
-			</div>
-		</div>
-		<div class="form-group checkboxlocations">
-			<label class="col-md-2 col-md-offset-3 label-control AvailableLoc">Available Locations: </label>
-			<div class="col-md-5 col-md-offset-3">
-				<label><input type="checkbox" id="mon"> Mon</label>
-				<label><input type="checkbox" id="tue"> Tue</label>
-				<label><input type="checkbox" id="wed"> Wed</label>
-				<label><input type="checkbox" id="thu"> Thu</label>
-				<label><input type="checkbox" id="fri"> Fri</label>
-				<label><input type="checkbox" id="sat"> Sat</label>
-				<label><input type="checkbox" id="sun"> Sun</label>
-			</div>
-		</div>
+
 		<button class="col-md-3 col-md-push-5 btn-sm btn-primary" ng-click="addCtrl.addEmployee(newEmployee)">Add User</button>
 	</form>

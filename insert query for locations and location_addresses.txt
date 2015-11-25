@@ -1,0 +1,22 @@
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('919 124th Ave NE', 'Ste 104', 'Bellevue', 'WA', '98005', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Bellevue', '(425) 453-9532', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('20806 Bothell-Everett Hwy', 'Ste 101', 'Bothell', 'WA', '98021', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Bothell', '(425) 368-3069', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('1505 NW Gilman Blvd', 'Ste 6', 'Issaquah', 'WA', '98027', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Issaquah', '(425) 272-1328', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('2550 NE Park Dr', '', 'Issaquah', 'WA', '98029', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Issaquah Highlands', '(425) 272-1328', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('11030 5th Ave NE', 'Ste A', 'Northgate', 'WA', '98125', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Northgate', '(206) 801-6688', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('16701 Cleveland St.', 'Ste B', 'Redmond', 'WA', '98052', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Redmond', '(425) 292-1818', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('10315 Cedar Park Crescent NE', '', 'Redmond', 'WA', '98053', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Redmond Ridge', '(425) 292-1838', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('4820 NE 4th St', 'Ste A107', 'Renton', 'WA', '98059', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Renton', '(425) 333-7333', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('825 228th Ave NE', '', 'Sammamish', 'WA', '98074', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Sammamish', '(425) 880-3788', LAST_INSERT_ID(), NOW(), NOW());
+INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('2100 E Spruce St', '', 'Seattle', 'WA', '98122', NOW(), NOW());
+INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Seattle', '(206) 341-9914', LAST_INSERT_ID(), NOW(), NOW());
+
+select * from locations
