@@ -1,5 +1,6 @@
 var employees = require('./../controllers/employees.js');
 var shifts = require('./../controllers/shifts.js');
+var locations = require('./../controllers/locations.js');
 
 module.exports = function(app) {
 
@@ -29,10 +30,14 @@ module.exports = function(app) {
 	app.get('/checkSession', function(req, res){
 		console.log('here');
 		employees.retrieveUser(req,res);
-	})
+	});
 
 	app.get('/getMySchedule/:id', function(req, res){
 		shifts.employeeShift(req,res);
+	});
+
+	app.get('/getLocations', function(req, res){
+		locations.getLocations(req, res);
 	});
 
 

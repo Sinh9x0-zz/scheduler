@@ -1,4 +1,4 @@
-app.controller('addEmployeeController', function(employeeFactory){
+app.controller('addEmployeeController', function(employeeFactory, locationFactory){
 	var _this = this;
 	_this.newEmployee = {}
 	_this.addEmployee = function(){
@@ -7,4 +7,8 @@ app.controller('addEmployeeController', function(employeeFactory){
 			console.log('success!');
 		})
 	}
+	locationFactory.getLocations(function(locations){
+			console.log('success getting locations');
+			_this.locations = locations;
+		})
 });

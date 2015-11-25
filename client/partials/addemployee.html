@@ -67,13 +67,9 @@
 		<div class="form-group checkboxlocations">
 			<label class="col-md-2 col-md-offset-3 label-control AvailableLoc">Available Locations: </label>
 			<div class="col-md-5 col-md-offset-3">
-				<label><input type="checkbox" id="mon"> Mon</label>
-				<label><input type="checkbox" id="tue"> Tue</label>
-				<label><input type="checkbox" id="wed"> Wed</label>
-				<label><input type="checkbox" id="thu"> Thu</label>
-				<label><input type="checkbox" id="fri"> Fri</label>
-				<label><input type="checkbox" id="sat"> Sat</label>
-				<label><input type="checkbox" id="sun"> Sun</label>
+				<label ng-repeat='location in addCtrl.locations' > 
+				    <input ng-model='addCtrl.newEmployee[location.id]' type="checkbox" id="{{location.id}}">&nbsp;  {{location.name}} &nbsp; &nbsp; &nbsp;    
+				</label>
 			</div>
 		</div>
 		<button class="col-md-3 col-md-push-5 btn-sm btn-primary" ng-click="addCtrl.addEmployee(newEmployee)">Add User</button>
