@@ -1,5 +1,6 @@
 var employees = require('./../controllers/employees.js');
 var shifts = require('./../controllers/shifts.js');
+var admins = require('./../controllers/admins.js');
 var locations = require('./../controllers/locations.js');
 
 module.exports = function(app) {
@@ -20,6 +21,15 @@ module.exports = function(app) {
 
 	app.post('/authenticateUser', employees.login);
 
+	app.post('/authenticateAdmin', function(req, res){
+		admins.login(req,res);
+
+	});
+	app.get('/destroySession', function(req, res){
+		req.session.destroy();
+		res.json(true);
+	});
+
 	app.get('/checkSession', employees.retrieveUser);
 
 	app.get('/getMySchedule/:id', shifts.employeeShift);
@@ -36,5 +46,6 @@ module.exports = function(app) {
 		req.session.destroy();
 		res.json(true);
 	});
+
 
 };

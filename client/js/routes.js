@@ -25,7 +25,9 @@ app.config(function ($routeProvider) {
         controllerAs: 'accCtrl'
     })
     .when('/admin/dashboard', {
-        templateUrl: 'partials/admin-dashboard.html'
+        templateUrl: 'partials/admin-dashboard.html',
+        controller: 'adminDashController',
+        controllerAs: 'adDashCtrl'
     })
     .when('/addshift', {
         templateUrl: 'partials/addshift.html',
@@ -41,6 +43,12 @@ app.config(function ($routeProvider) {
         templateUrl: 'partials/editemployeeinfo.html', 
         controller:'editEmployeeController',
         controllerAs: 'editEmpCtrl'
+    })
+    .when('/admin', {
+        templateUrl: 'partials/login-foradmin.html', 
+        controller:'adminLoginController',
+        controllerAs: 'adlogCtrl',
+        css: 'css/admin.css'
     })
     .when('/availability/:id', {
         templateUrl: 'partials/availability.html', 
