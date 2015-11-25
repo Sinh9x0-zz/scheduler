@@ -31,13 +31,6 @@ app.controller('usersController', function(sessionFactory, userFactory) {
 	_this.inSession = function() {
 		return (!jQuery.isEmptyObject(_this.currentUser));
 	}
-
-	_this.destroySession = function(){
-		_this.currentUser =  {};
-		session.destroySession();
-		_this.feedback = "You've been logged out successfully!";
-	}
-
 	_this.checkSession();
 
 });
