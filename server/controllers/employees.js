@@ -55,7 +55,7 @@ module.exports = (function() {
 
 		addAvailability: function(req, res){
 			var post1= {
-				employee_id: 
+				employee_id: 1, 
 				mon: req.body.mon,
 				tue: req.body.tue,
 				wed: req.body.wed,
@@ -66,7 +66,7 @@ module.exports = (function() {
 				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '),
 			}
-		}
+		},
 		deleteEmployee: function(req, res) {
 			var query = "DELETE FROM employees WHERE id = ?";
 			connection.query(query, req.params.id, function (err, rows){
