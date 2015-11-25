@@ -8,7 +8,5 @@ app.controller('scheduleController', function(sessionFactory, employeeFactory, s
 			$location.path('/');
 		}
 	})
-	// myScheduleFactory.getMySchedule(1, function(mySchedule){
-	// 	_this.mySchedule = mySchedule;
-	// });
+
 });

@@ -1,6 +1,11 @@
 app.controller('addEmployeeController', function(employeeFactory, locationFactory, $location, $routeParams){
 	var _this = this;
 	_this.newEmployee = {}
+
+	locationFactory.getLocations(function(locations){
+		_this.locations = locations;
+	})
+
 	_this.addEmployee = function(){
 		console.log(_this.newEmployee);
 		employeeFactory.addEmployee(_this.newEmployee, function(id){
@@ -9,11 +14,9 @@ app.controller('addEmployeeController', function(employeeFactory, locationFactor
 			$location.path('/availability/'+id);
 		})
 	}
+
 	_this.addAvailability = function(){
 		console.log($routeParams.id);
 	}
-	locationFactory.getLocations(function(locations){
-			console.log('success getting locations');
-			_this.locations = locations;
-		})
+
 });

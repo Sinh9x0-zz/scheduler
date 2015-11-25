@@ -3,13 +3,11 @@ app.controller('editEmployeeController', function($routeParams, employeeFactory,
 	
 	employeeFactory.getOneEmployee($routeParams.id, function(oneEmployee){
 			_this.oneEmployee = oneEmployee;
-			// _this.oneEmployee[0].birthday = 
 		})
 
-	_this.deleteEmployee = function(empid){
-			employeeFactory.deleteEmployee(empid, function(){
+	_this.deleteEmployee = function(id){
+		employeeFactory.deleteEmployee(id, function(){
 			$location.path('/showallemployees');
-
 		})
 	};
 
