@@ -7,6 +7,11 @@ app.factory('sessionFactory', function($http){
 			callback();
 		});
 	}
+
+	session.removeLogOutMessage = function(){
+		session.logoutMessage = '';
+	}
+
 	session.getLogOutMessage = function(callback){
 		callback(session.logoutMessage);
 	}
