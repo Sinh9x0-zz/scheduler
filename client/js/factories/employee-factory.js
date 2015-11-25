@@ -37,6 +37,12 @@ app.factory('employeeFactory', function($http){
 		})
 	}
 
+	factory.deleteEmployee = function(empid, callback){
+		$http.delete('/deleteEmployee/' + empid).success(function(){
+			callback();
+		});
+	}
+
 	return factory;
 })
 

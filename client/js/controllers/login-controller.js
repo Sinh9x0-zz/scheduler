@@ -1,8 +1,12 @@
 app.controller('loginController', function(sessionFactory, employeeFactory, $location) {
 	var _this = this;
-
 	sessionFactory.getErrors(function(response){
 		_this.sessionErrors = response;
+	})
+
+	sessionFactory.getLogOutMessage(function(response){
+		console.log(response);
+		_this.logoutMessage = response;
 	})
 
 	_this.login = function(){
