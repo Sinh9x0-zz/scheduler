@@ -22,7 +22,7 @@ app.factory('sessionFactory', function($http){
 	session.getUser = function(callback){
 		$http.get('/checkSession').success(function(response){
 			console.log(response);
-			if(response == 'havent logged in'){
+			if(response == 'havent logged in' || response.length == 0){
 				session.errors = ' Require log in';
 				callback(session.errors);
 			} else {
