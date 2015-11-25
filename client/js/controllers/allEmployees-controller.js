@@ -7,6 +7,5 @@ app.controller('allEmployeesController', function(employeeFactory){
 				allEmployees[index].name = allEmployees[index].first_name + " " + allEmployees[index].last_name;
 			}
 			_this.allEmployees = allEmployees;
-			console.log(_this.allEmployees);
 		})
 });

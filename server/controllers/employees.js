@@ -40,7 +40,6 @@ module.exports = (function() {
 				console.log(result);
 			});
 
-			console.log(query.sql); 
 		},
 
 		deleteEmployee: function(req, res) {
@@ -52,6 +51,23 @@ module.exports = (function() {
 					res.json(rows)
 				}
 			})
+		},
+
+		editEmployee: function(req, res) {
+			var post = {
+				email: req.body[0].email, 
+				password: req.body[0].password, 
+				first_name: req.body[0].first_name,
+				last_name: req.body[0].last_name, 
+				address: req.body[0].address, 
+				phone_number: req.body[0].phone_number, 
+				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
+				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
+			};
+
+			var query = connection.query('UPDATE employees SET ? where id =' + req.body[0].id, post, function(err, result) {
+				res.json(result)			
+			});
 		},
 
 		login: function(req,res){

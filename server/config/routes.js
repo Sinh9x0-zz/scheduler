@@ -11,7 +11,9 @@ module.exports = function(app) {
 
 	app.delete('/deleteEmployee/:id', function(req,res){
 		employees.deleteEmployee(req,res);
-	})
+	});
+
+	app.post('/editEmployee', employees.editEmployee);
 
 	app.post('/addEmployee', employees.addEmployee);
 
