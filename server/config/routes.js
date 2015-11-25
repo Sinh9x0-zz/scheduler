@@ -12,12 +12,15 @@ module.exports = function(app) {
 
 	app.delete('/deleteEmployee/:id', function(req,res){
 		employees.deleteEmployee(req,res);
-	})
+	});
 
 	app.post('/addEmployee', employees.addEmployee);
 
 	app.get('/deleteUser/:id', function(req, res){
 		console.log('connect to database');
+	});
+
+	app.get('/availability/:id', function(req, res){
 	});
 
 	app.post('/authenticateUser', employees.login);
@@ -39,6 +42,7 @@ module.exports = function(app) {
 	app.get('/getLocations', function(req, res){
 		locations.getLocations(req, res);
 	});
+
 
 
 };

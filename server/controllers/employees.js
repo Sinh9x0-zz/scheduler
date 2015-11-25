@@ -24,23 +24,40 @@ module.exports = (function() {
 		},
 		
 		addEmployee: function(req, res) {
-			var post = {
+			var post1 = {
+				address1: req.body.address1, 
+				address2: req.body.address2,
+				city: req.body.city, 
+				state: req.body.state,
+				zip: req.body.zip,
+				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
+				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
+			}
+			var query1 = connection.query('INSERT INTO employee_addresses SET ?', post1, function(err, result) {
+				console.log(result.insertId);
+
+				var post2 = {
 				email: req.body.email, 
 				password: req.body.password, 
 				first_name: req.body.first_name,
 				last_name: req.body.last_name, 
-				address: req.body.address, 
 				birthday: req.body.birthday, 
-				phone_number: req.body.phone_number, 
+				phone_number: req.body.phone_number,
+				employee_address_id: result.insertId, 
 				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
 			};
+			var query2 = connection.query('INSERT INTO employees SET ?', post2, function(err, result) {
+			console.log(result);
 
-			var query = connection.query('INSERT INTO employees SET ?', post, function(err, result) {
-				console.log(result);
+			console.log(query1.sql + query2.sql); 
+
+			return res.json(result.insertId);
 			});
-
-			console.log(query.sql); 
+			
+			
+			});
+			
 		},
 
 		deleteEmployee: function(req, res) {

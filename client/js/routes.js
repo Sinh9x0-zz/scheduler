@@ -43,6 +43,12 @@ app.config(function ($routeProvider) {
         controller:'editEmployeeController',
         controllerAs: 'editEmpCtrl'
     })
+    .when('/availability/:id', {
+        templateUrl: 'partials/availability.html', 
+        controller: 'addEmployeeController',
+        controllerAs: 'addCtrl',
+        css: 'css/addemployee.css'
+    })
     .otherwise({
         redirectTo: '/dashboard'
     });
