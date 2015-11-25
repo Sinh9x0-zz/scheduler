@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ui.calendar']); 
+var app = angular.module('app', ['ngRoute']); 
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -13,9 +13,6 @@ app.config(function ($routeProvider) {
         controller: 'scheduleController',
         controllerAs: 'schCtrl'
     })
-    .when('/myrequests',{
-        templateUrl: 'partials/myrequests.html'
-    })
     .when('/addemployee',{
         templateUrl: 'partials/addemployee.html',
         controller: 'addEmployeeController',
@@ -28,13 +25,12 @@ app.config(function ($routeProvider) {
         controllerAs: 'accCtrl'
     })
     .when('/admin/dashboard', {
-        templateUrl: 'partials/admin-dashboard.html',
-        controller: 'adminController',
-        controllerAs: 'adminCtrl',
-        css: 'css/fullcalendar.min.css'
+        templateUrl: 'partials/admin-dashboard.html'
     })
     .when('/addshift', {
-        templateUrl: 'partials/addshift.html'
+        templateUrl: 'partials/addshift.html',
+        controller: 'addShiftController',
+        controllerAs: 'addSftCtrl'
     })
     .when('/showallemployees', {
         templateUrl: 'partials/showallemployees.html', 

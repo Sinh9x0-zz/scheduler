@@ -14,33 +14,27 @@ module.exports = function(app) {
 
 	app.post('/addEmployee', employees.addEmployee);
 
-	app.get('/deleteUser/:id', function(req, res){
-		console.log('connect to database');
-	});
+	// app.post('/addShift', shifts.addShift);
 
-	app.get('/availability/:id', function(req, res){
-	});
+	app.post('/addShift', shifts.addShift);
 
 	app.post('/authenticateUser', employees.login);
+
+	app.get('/checkSession', employees.retrieveUser);
+
+	app.get('/getMySchedule/:id', shifts.employeeShift);
+
+	app.get('/getLocations', locations.getLocations);
+
+	app.get('/getCategories', shifts.getCategories);
+
+	app.get('/availability/:id', function(req, res){
+		console.log(req.params.id);
+	});
 
 	app.get('/destroySession', function(req, res){
 		req.session.destroy();
 		res.json(true);
 	});
-
-	app.get('/checkSession', function(req, res){
-		console.log('here');
-		employees.retrieveUser(req,res);
-	});
-
-	app.get('/getMySchedule/:id', function(req, res){
-		shifts.employeeShift(req,res);
-	});
-
-	app.get('/getLocations', function(req, res){
-		locations.getLocations(req, res);
-	});
-
-
 
 };

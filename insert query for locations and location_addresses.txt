@@ -19,4 +19,11 @@ INSERT INTO locations(name, phone_number, location_address_id, created_at, updat
 INSERT INTO location_addresses(address1, address2, city, state, zip, created_at, updated_at) VALUES('2100 E Spruce St', '', 'Seattle', 'WA', '98122', NOW(), NOW());
 INSERT INTO locations(name, phone_number, location_address_id, created_at, updated_at) VALUES ('Seattle', '(206) 341-9914', LAST_INSERT_ID(), NOW(), NOW());
 
+INSERT INTO `schedulerdb`.`categories` (`id`, `category`, `created_at`, `updated_at`) VALUES ('1', 'Teaching Assistant', '2015-11-24 21:50:18', '2015-11-24 21:50:18');
+INSERT INTO `schedulerdb`.`categories` (`id`, `category`, `created_at`, `updated_at`) VALUES ('2', 'Math Enrichment', '2015-11-24 21:50:18', '2015-11-24 21:50:18');
+INSERT INTO `schedulerdb`.`categories` (`id`, `category`, `created_at`, `updated_at`) VALUES ('3', 'English Enrichment', '2015-11-24 21:50:18', '2015-11-24 21:50:18');
+INSERT INTO `schedulerdb`.`categories` (`id`, `category`, `created_at`, `updated_at`) VALUES ('4', 'Math Tutor', '2015-11-24 21:50:18', '2015-11-24 21:50:18');
+INSERT INTO `schedulerdb`.`categories` (`id`, `category`, `created_at`, `updated_at`) VALUES ('5', 'English Tutor', '2015-11-24 21:50:18', '2015-11-24 21:50:18');
+
+
 select * from locations

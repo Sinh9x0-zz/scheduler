@@ -5,16 +5,13 @@ app.controller('loginController', function(sessionFactory, employeeFactory, $loc
 	})
 
 	sessionFactory.getLogOutMessage(function(response){
-		console.log(response);
 		_this.logoutMessage = response;
 	})
 
 	_this.login = function(){
-		console.log('logging in');
 		employeeFactory.authenticate(_this.user, function(sessionUser){
 			if(sessionUser.length == 0){
 				_this.feedback = "Invalid Credentials";
-				console.log('invalid');
 			} else {				
 				_this.feedback = "You've been logged in successfully!";
 				sessionFactory.getUser(function(sUser){
