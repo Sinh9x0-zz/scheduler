@@ -40,7 +40,6 @@ module.exports = (function() {
 					password: req.body.password, 
 					first_name: req.body.first_name,
 					last_name: req.body.last_name, 
-					birthday: req.body.birthday, 
 					phone_number: req.body.phone_number,
 					employee_address_id: result.insertId, 
 					created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
