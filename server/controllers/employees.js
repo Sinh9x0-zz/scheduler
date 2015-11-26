@@ -1,28 +1,26 @@
 module.exports = (function() {
 	return {
 		allEmployees: function(req, res) {
-			var query = "SELECT * FROM employees";
+			var query = "SELECT * FROM employees JOIN employee_addresses ON employee_address_id = employee_addresses.id ";
 			connection.query(query, function (err, rows){
 				if (err) 
 					res.json(err)
 				else {
-					console.log(rows)
 					res.json(rows)
 				}
 			})
 		},
 
 		getOneEmployee: function(req, res) {
-			var query = "SELECT * FROM employees WHERE id = ?";
-			connection.query(query, req.params.id, function (err, rows){
-				if (err) 
-					res.json(err)
-				else {
-					res.json(rows)
-				}
-			})
+			var query = "SELECT * FROM employees JOIN employee_addresses ON employee_address_id = employee_addresses.id WHERE employees.id = " + req.params.id;
+			connection.query(query, function(err, rows){
+					if (err) 
+						res.json(err)
+					else 
+						res.json(rows)
+			});
 		},
-		
+
 		addEmployee: function(req, res) {
 			var post1 = {
 				address1: req.body.address1, 
@@ -110,17 +108,27 @@ module.exports = (function() {
 				password: req.body[0].password, 
 				first_name: req.body[0].first_name,
 				last_name: req.body[0].last_name, 
-				address: req.body[0].address, 
+				employee_address_id: req.body[0].employee_address_id, 
 				phone_number: req.body[0].phone_number, 
 				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
-			};
+			}
 
-			var query = connection.query('UPDATE employees SET ? where id =' + req.body[0].id, post, function(err, result) {
+			var query1 = connection.query('UPDATE employees SET ? where id=' + req.body[0].id, post, function(err, result){
+				var post2 = {
+					address1: req.body[0].address1,
+					address2: req.body[0].address2,
+					city: req.body[0].city,
+					state: req.body[0].state,
+					zip: req.body[0].zip,
+				};
+
+				var query2 = connection.query('UPDATE employee_addresses SET ? where id =' + req.body[0].id, post2, function(err, result) {
 				res.json(result)			
+				});
 			});
 		},
-
+		
 		login: function(req,res){
 			var query = "SELECT * FROM employees where email = '"+req.body.email+"'AND password = '"+req.body.password+"';"
 			connection.query(query, function (err, rows){
