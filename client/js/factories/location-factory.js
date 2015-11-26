@@ -1,4 +1,4 @@
-app.factory('locationFactory', function($http){
+app.factory('locationFactory', function($http, $location){
 	var factory = {};
 
 	factory.getLocations = function(callback){
@@ -6,6 +6,10 @@ app.factory('locationFactory', function($http){
 			callback(locations);
 		});	
 	}
-
+	factory.addLocation = function(location){
+		$http.post('/addLocation/', location).success(function(result){
+			$location.path('/admin/dashboard');
+		});
+	}
 	return factory;
 })

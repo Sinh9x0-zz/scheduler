@@ -52,19 +52,46 @@ module.exports = (function() {
 			});			
 		},
 
-		addAvailability: function(req, res){
-			var post1 = {
-				employee_id: 1,
-				mon: req.body.mon,
-				tue: req.body.tue,
-				wed: req.body.wed,
-				thu: req.body.thu,
-				fri: req.body.fri,
-				sat: req.body.sat,
-				sun: req.body.sun,
-				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
-				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '),
+		updateAvailability: function(req, res){
+
+			var post = {}
+			if (req.body.days.mon) {post.mon = req.body.days.mon;} else {post.mon = false;}
+			if (req.body.days.tue) {post.tue = req.body.days.tue;} else {post.tue = false;}
+			if (req.body.days.wed) {post.wed = req.body.days.wed;} else {post.wed = false;}
+			if (req.body.days.thu) {post.thu = req.body.days.thu;} else {post.thu = false;}
+			if (req.body.days.fri) {post.fri = req.body.days.fri;} else {post.fri = false;}
+			if (req.body.days.sat) {post.sat = req.body.days.sat;} else {post.sat = false;}
+			if (req.body.days.sun) {post.sun = req.body.days.sun;} else {post.sun = false;}
+			post.created_at = (new Date()).toISOString().substring(0, 19).replace('T', ' '); 
+			post.updated_at = (new Date()).toISOString().substring(0, 19).replace('T', ' ');
+
+			var query = connection.query('SELECT * FROM user_availability WHERE employee_id =' + req.body.id, function(err, result){
+				if (result.length == 0) {
+					post.employee_id = req.body.id;
+					var insertQuery = connection.query('INSERT INTO user_availability SET ?', post, function(err, result){
+						console.log(result);
+					})
+				} else {
+					var insertQuery = connection.query('UPDATE user_availability SET ? where employee_id =' + req.body.id, post, function(err, result){
+						console.log(result);
+					})
+				}
+	
+			});
+
+			var tempQuery = ''
+			for (index in req.body.location){
+				if (req.body.location[index]){	
+					connection.query('INSERT INTO employee_locations SET ?', {employee_id: req.body.id, location_id: index}, function(err, result){
+						console.log(result);
+					})
+				} else {
+					connection.query('DELETE FROM employee_locations where employee_id = ' + req.body.id + ' and location_id= ' + index, function(err, result){
+						console.log(result);
+					})
+				}
 			}
+
 		},
 
 		deleteEmployee: function(req, res) {

@@ -56,6 +56,11 @@ app.config(function ($routeProvider) {
         controllerAs: 'addCtrl',
         css: 'css/addemployee.css'
     })
+    .when('/addlocation', {
+        templateUrl: 'partials/addlocation.html', 
+        controller: 'addLocationController',
+        controllerAs: 'addLocationCtrl'
+    })
     .otherwise({
         redirectTo: '/dashboard'
     });

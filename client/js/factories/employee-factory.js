@@ -41,7 +41,13 @@ app.factory('employeeFactory', function($http){
 		$http.post('/editEmployee/', employee).success(function(updatedEmployee){
 			callback(updatedEmployee);
 		})
+	}
 
+	factory.updateEmployeeAvailability = function(availability, callback) {
+		console.log(availability)
+		$http.post('/updateAvailability', availability).success(function(updated){
+			callback(updated);
+		})
 	}
 
 	return factory;
