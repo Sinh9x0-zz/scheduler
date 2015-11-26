@@ -1,0 +1,50 @@
+<admin-navbar></admin-navbar>
+
+<h1>Add a Location</h1> 
+
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-md-1 control-label" for="name">Name</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="name" ng-model="addLocationCtrl.newLocation.name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-1 control-label" for="address1">Address 1</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="address1" ng-model="addLocationCtrl.newLocation.address1">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-1 control-label" for="address2">Address 2</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="address2" ng-model="addLocationCtrl.newLocation.address2">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-1 control-label" for="city">City</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="city" ng-model="addLocationCtrl.newLocation.city">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-1 control-label" for="state">State</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" maxlength="2" id="state" ng-model="addLocationCtrl.newLocation.state">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-1 control-label" for="zip">Zip</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="zip" ng-model="addLocationCtrl.newLocation.zip">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-1 control-label" for="phone_number">Phone</label>
+			<div class="col-md-3">
+				<input type='tel' class="form-control" id="phone_number" ng-model="addLocationCtrl.newLocation.phone_number">
+			</div>
+		</div>
+
+		<button class="col-md-2 col-md-push-1 btn btn-primary" ng-click="addLocationCtrl.addLocation()">Add</button>
+	</form>
