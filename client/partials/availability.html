@@ -1,31 +1,33 @@
 <admin-navbar></admin-navbar>
 
-<script type="text/javascript">console.log('on the page')</script>
-<h1 class="text-center">Add Availability</h1>
-	<div class="container">
-		<div class="row">
+<h1>Employee Availability</h1>
+<div class="container">
+
+	<div class="row">
+		<label class="label-control availableHeader"><h4>Available Days:</h4></label>
 		<div class="form-group checkboxdays">
-			<label class="col-md-3 col-md-offset-3 label-control AvailableDays"><h4>Available Days:</h4> </label>
-			<div class="col-md-5 col-md-offset-3">
-				<label><input type="checkbox" id="mon"> Mon</label>
-				<label><input type="checkbox" id="tue"> Tue</label>
-				<label><input type="checkbox" id="wed"> Wed</label>
-				<label><input type="checkbox" id="thu"> Thu</label>
-				<label><input type="checkbox" id="fri"> Fri</label>
-				<label><input type="checkbox" id="sat"> Sat</label>
-				<label><input type="checkbox" id="sun"> Sun</label>
-			</div>
+			<label><input type="checkbox" ng-model="addCtrl.employee.days['mon']"> Mon</label>
+			<label><input type="checkbox" ng-model="addCtrl.employee.days['tue']"> Tue</label>
+			<label><input type="checkbox" ng-model="addCtrl.employee.days['wed']"> Wed</label>
+			<label><input type="checkbox" ng-model="addCtrl.employee.days['thu']"> Thu</label>
+			<label><input type="checkbox" ng-model="addCtrl.employee.days['fri']"> Fri</label>
+			<label><input type="checkbox" ng-model="addCtrl.employee.days['sat']"> Sat</label>
+			<label><input type="checkbox" ng-model="addCtrl.employee.days['sun']"> Sun</label>
 		</div>
-		<div class="form-group checkboxlocations">
-			<label class="col-md-3 col-md-offset-3 label-control AvailableLoc"><h4>Available Locations:</h4> </label>
-			<div class="col-md-5 col-md-offset-3">
-				<label ng-repeat='location in addCtrl.locations' > 
-				    <input ng-model='addCtrl.newEmployee[location.id]' type="checkbox" id="{{location.id}}">&nbsp;  {{location.name}} &nbsp; &nbsp; &nbsp;    
-				</label>
-			</div>
-		</div></div>
-		<div class="row">
-			<button class="col-md-2 col-md-offset-5 btn-sm btn-primary" ng-click="addCtrl.addAvailability(newEmployee)">Add Availability</button>
-		</div>
-		
 	</div>
+
+	<div class="row no-padding">
+		<label class="label-control availableHeader"><h4>Available Locations:</h4></label>
+		<div class="form-group checkboxlocations col-md-6">
+			<label ng-repeat='location in addCtrl.locations'> 
+				<input ng-model='addCtrl.employee.location[location.id]' type="checkbox" id="{{location.id}}">&nbsp; {{location.name}}    
+			</label>
+		</div>
+	</div>
+
+	
+	<div class="row">
+		<button class="col-md-2 btn-sm btn-primary" ng-click="addCtrl.updateEmployeeAvailability()">Save Availability</button>
+	</div>
+	
+</div>

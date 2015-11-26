@@ -15,7 +15,7 @@ module.exports = function(app) {
 
 	app.post('/addEmployee', employees.addEmployee);
 
-	// app.post('/addShift', shifts.addShift);
+	app.post('/updateAvailability', employees.updateAvailability);
 
 	app.post('/addShift', shifts.addShift);
 
