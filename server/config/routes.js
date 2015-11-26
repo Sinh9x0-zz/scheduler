@@ -21,6 +21,8 @@ module.exports = function(app) {
 
 	app.post('/authenticateUser', employees.login);
 
+	app.post('/addLocation', locations.addLocation);
+
 	app.post('/authenticateAdmin', function(req, res){
 		admins.login(req,res);
 
@@ -41,7 +43,6 @@ module.exports = function(app) {
 	app.get('/availability/:id', function(req, res){
 		console.log(req.params.id);
 	});
-
 	app.get('/destroySession', function(req, res){
 		req.session.destroy();
 		res.json(true);
