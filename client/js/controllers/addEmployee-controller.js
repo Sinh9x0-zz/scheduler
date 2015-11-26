@@ -15,8 +15,8 @@ app.controller('addEmployeeController', function(employeeFactory, locationFactor
 	}
 
 	_this.updateEmployeeAvailability = function(){
-		_this.employee.id = $routeParams.id
-		employeeFactory.updateEmployeeAvailability(_this.employee)
+		_this.employee.id = $routeParams.id;
+		employeeFactory.updateEmployeeAvailability(_this.employee);
 	}
 
 });

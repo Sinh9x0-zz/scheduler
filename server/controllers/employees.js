@@ -79,7 +79,6 @@ module.exports = (function() {
 	
 			});
 
-			var tempQuery = ''
 			for (index in req.body.location){
 				if (req.body.location[index]){	
 					connection.query('INSERT INTO employee_locations SET ?', {employee_id: req.body.id, location_id: index}, function(err, result){

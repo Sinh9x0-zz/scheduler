@@ -1,0 +1,38 @@
+<!-- <div ng-show="lgnCtrl.sessionErrors" class="alert alert-danger" role="alert"><strong>Warning!</strong>{{lgnCtrl.sessionErrors}}</div>
+<div ng-show="lgnCtrl.logoutMessage" class="alert alert-success" role="alert">{{lgnCtrl.logoutMessage}}</div> -->
+<div class="fullscreen-bg">
+    <video loop muted autoplay class="fullscreen-bg__video">
+        <source src="video/schedule.mp4" type="video/mp4">
+    </video>
+</div>
+<form class="form-signin">
+	<h2 class="form-signin-heading">Admin Sign In</h2>
+	<label>Email address</label>
+	<label for="inputEmail" class="sr-only">Email address</label>
+	<div class="input-group">
+	  	<span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope-o"></i></span>
+	  	<input type="email" id="inputEmail" class="form-control" 
+		placeholder="Email address" ng-model="adlogCtrl.user.email" required autofocus>
+	</div>
+	<br>
+	<label>Password</label>
+	<label for="inputPassword" class="sr-only">Password</label>
+	<div class="input-group">
+	  	<span class="input-group-addon" id="basic-addon1">
+	  		<i class="fa fa-key"></i>
+	  		</span>
+	  	<input type="password" id="inputPassword" class="form-control" 
+		placeholder="Password" ng-model="adlogCtrl.user.password" required>
+	</div>
+	<div id="invalid" ng-show="adlogCtrl.invalid"><br>Invalid email or password</div>
+
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" value="remember-me">
+			<i class="fa fa-pencil"></i> Remember me
+		</label>
+	</div>
+
+	<button ng-click='adlogCtrl.login()' class="btn btn-lg btn-primary btn-block" 
+	type="submit">Sign in</button>
+</form>

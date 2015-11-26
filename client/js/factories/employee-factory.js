@@ -7,12 +7,6 @@ app.factory('employeeFactory', function($http){
 		});
 	}
 
-	factory.removeUser = function(id, callback){
-		$http.get('/deleteUser/' + id).success(function(){
-			callback();
-		});
-	}
-
 	factory.authenticate = function(user, callback){
 		$http.post('/authenticateUser/', user).success(function(sessionUser){
 			callback(sessionUser);

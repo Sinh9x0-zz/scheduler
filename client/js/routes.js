@@ -45,7 +45,7 @@ app.config(function ($routeProvider) {
         controllerAs: 'editEmpCtrl'
     })
     .when('/admin', {
-        templateUrl: 'partials/login-foradmin.html', 
+        templateUrl: 'partials/admin-login.html', 
         controller:'adminLoginController',
         controllerAs: 'adlogCtrl',
         css: 'css/admin.css'

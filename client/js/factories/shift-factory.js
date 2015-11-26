@@ -13,6 +13,7 @@ app.factory('shiftFactory', function($http){
 			callback(response);
 		});	
 	}
+	
 	factory.getAllShift = function(callback){
 		$http.get('/getAllShift').success(function(response){
 			callback(response);

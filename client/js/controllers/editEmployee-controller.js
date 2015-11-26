@@ -17,5 +17,4 @@ app.controller('editEmployeeController', function($routeParams, employeeFactory,
 		})
 	};
 
-
 });

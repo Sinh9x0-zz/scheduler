@@ -31,6 +31,5 @@ app.factory('sessionFactory', function($http){
 		})
  	}
 
-
 	return session;
 })

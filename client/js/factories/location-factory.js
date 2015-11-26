@@ -6,10 +6,12 @@ app.factory('locationFactory', function($http, $location){
 			callback(locations);
 		});	
 	}
+
 	factory.addLocation = function(location){
 		$http.post('/addLocation/', location).success(function(result){
 			$location.path('/admin/dashboard');
 		});
 	}
+	
 	return factory;
 })
