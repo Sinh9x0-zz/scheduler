@@ -47,5 +47,8 @@ module.exports = function(app) {
 		res.json(true);
 	});
 
+	app.get('/getAllShift', function(req,res){
+		shifts.getAll(req,res);
+	})
 
 };

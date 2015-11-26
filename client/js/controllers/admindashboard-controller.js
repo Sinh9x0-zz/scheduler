@@ -1,4 +1,4 @@
-app.controller('adminDashController', function(sessionFactory, adminFactory, $location) {
+app.controller('adminDashController', function(sessionFactory, adminFactory, shiftFactory, employeeFactory, $location) {
 	var _this = this;
 	
 	sessionFactory.getUser(function(currentUser){
@@ -8,4 +8,15 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, $lo
 			$location.path('/admin');
 		}
 	})
+
+	shiftFactory.getAllShift(function(response){
+		_this.allShifts = response;
+		console.log(_this.allShifts);
+	})
+
+	employeeFactory.showAllEmployees(function(response){
+		_this.allEmployees = response;
+		console.log(_this.allEmployees);
+	})
+
 });
