@@ -15,11 +15,13 @@ module.exports = function(app) {
 
 	app.post('/addEmployee', employees.addEmployee);
 
-	// app.post('/addShift', shifts.addShift);
+	app.post('/updateAvailability', employees.updateAvailability);
 
 	app.post('/addShift', shifts.addShift);
 
 	app.post('/authenticateUser', employees.login);
+
+	app.post('/addLocation', locations.addLocation);
 
 	app.post('/authenticateAdmin', function(req, res){
 		admins.login(req,res);
@@ -41,11 +43,13 @@ module.exports = function(app) {
 	app.get('/availability/:id', function(req, res){
 		console.log(req.params.id);
 	});
-
 	app.get('/destroySession', function(req, res){
 		req.session.destroy();
 		res.json(true);
 	});
 
+	app.get('/getAllShift', function(req,res){
+		shifts.getAll(req,res);
+	})
 
 };

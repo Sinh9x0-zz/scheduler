@@ -43,13 +43,29 @@ module.exports = (function() {
 				location_id: req.body.location, 
 				start_time: startTime,
 				end_time: endTime,
+				start_date: req.body.startDate,
+				end_date: req.body.endDate,
 				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
 			}
 
 			var query = connection.query('INSERT INTO shifts SET ?', post, function(err, result) {
+				console.log(err);
 				return res.json(result.insertId);
 			});			
+		},
+
+		getAll: function(req,res){
+			var query = "SELECT * FROM shifts left join locations on locations.id = shifts.location_id";
+			connection.query(query, function (err, rows){
+				if (err) {
+					console.log(err);
+					res.json(err);
+				} else {
+					console.log(rows);
+					res.json(rows);
+				}
+			})
 		}
 	}
 

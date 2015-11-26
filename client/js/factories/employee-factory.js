@@ -1,12 +1,6 @@
 app.factory('employeeFactory', function($http){
 	var factory = {};
 
-	factory.getUsers = function(callback){
-		$http.get('/allUsers').success(function(output){
-			callback(output);
-		});
-	}
-
 	factory.addEmployee = function(newEmployee, callback){
 		$http.post('/addemployee', newEmployee).success(function(user){
 			callback(user);
@@ -47,7 +41,13 @@ app.factory('employeeFactory', function($http){
 		$http.post('/editEmployee/', employee).success(function(updatedEmployee){
 			callback(updatedEmployee);
 		})
+	}
 
+	factory.updateEmployeeAvailability = function(availability, callback) {
+		console.log(availability)
+		$http.post('/updateAvailability', availability).success(function(updated){
+			callback(updated);
+		})
 	}
 
 	return factory;

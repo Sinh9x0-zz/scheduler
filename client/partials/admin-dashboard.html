@@ -1,3 +1,29 @@
 <admin-navbar></admin-navbar>
 <h2>Hi {{adDashCtrl.currentUserData[0].email}}</h2>
-
+<h4>Available shifts</h4>
+<table class="table">
+	<tr>
+		<th>Location</th>
+		<th>Start Time</th>
+		<th>End Time</th>
+		<th>Start Date</th>
+		<th>End Date</th>
+		<th>Available Employees</th>
+		<th>Actions</th>
+	</tr>
+	<tr ng-repeat = "shift in adDashCtrl.allShifts">
+		<td ng-bind="shift.name"></td>
+		<td ng-bind="shift.start_time"></td>
+		<td ng-bind="shift.end_time"></td>
+		<td ng-bind="shift.start_date | date: 'fullDate'"></td>
+		<td ng-bind="shift.end_date | date: 'fullDate'"></td>
+		<td><select>
+				<option ng-repeat="employee in adDashCtrl.allEmployees">{{employee.first_name}} {{employee.last_name}}</option>
+			</select></td>
+		<td><a ng-click="assign()" href="">Assign</a></td>
+	</tr>
+</table>
+<br>
+<h4>Available Employees</h4>
+<table class="table">
+</table>

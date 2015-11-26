@@ -8,5 +8,5 @@ app.controller('scheduleController', function(sessionFactory, employeeFactory, s
 			$location.path('/');
 		}
 	})
-
+	
 });
