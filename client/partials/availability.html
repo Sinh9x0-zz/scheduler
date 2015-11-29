@@ -4,7 +4,7 @@
 <div class="container">
 
 	<div class="row">
-		<label class="label-control availableHeader"><h4>Available Days:</h4></label>
+		<label class="label-control availableHeader"><h4>Days</h4></label>
 		<div class="form-group checkboxdays">
 			<label><input type="checkbox" ng-model="addCtrl.employee.days['mon']"> Mon</label>
 			<label><input type="checkbox" ng-model="addCtrl.employee.days['tue']"> Tue</label>
@@ -17,15 +17,23 @@
 	</div>
 
 	<div class="row no-padding">
-		<label class="label-control availableHeader"><h4>Available Locations:</h4></label>
+		<label class="label-control availableHeader"><h4>Locations</h4></label>
 		<div class="form-group checkboxlocations col-md-6">
 			<label ng-repeat='location in addCtrl.locations'> 
-				<input ng-model='addCtrl.employee.location[location.id]' type="checkbox" id="{{location.id}}">&nbsp; {{location.name}}    
+				<input ng-model='addCtrl.employee.locations[location.id]' type="checkbox" id="{{location.id}}">&nbsp; {{location.name}}    
 			</label>
 		</div>
 	</div>
 
-	
+	<div class="row no-padding">
+		<label class="label-control availableHeader"><h4>Positions</h4></label>
+		<div class="form-group checkboxlocations col-md-6">
+			<label ng-repeat='category in addCtrl.categories'> 
+				<input ng-model='addCtrl.employee.categories[category.id]' type="checkbox" id="{{category.id}}">&nbsp; {{category.category}}    
+			</label>
+		</div>
+	</div>
+
 	<div class="row">
 		<button class="col-md-2 btn-sm btn-primary" ng-click="addCtrl.updateEmployeeAvailability()">Save Availability</button>
 	</div>

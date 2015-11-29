@@ -51,6 +51,7 @@ module.exports = (function() {
 		},
 
 		updateAvailability: function(req, res){
+			var errors = [];
 
 			var post = {}
 			if (req.body.days.mon) {post.mon = req.body.days.mon;} else {post.mon = false;}
@@ -67,27 +68,50 @@ module.exports = (function() {
 				if (result.length == 0) {
 					post.employee_id = req.body.id;
 					var insertQuery = connection.query('INSERT INTO user_availability SET ?', post, function(err, result){
-						console.log(result);
+						if (err)
+							errors.push(err);
 					})
 				} else {
 					var insertQuery = connection.query('UPDATE user_availability SET ? where employee_id =' + req.body.id, post, function(err, result){
-						console.log(result);
+						if (err)
+							errors.push(err);
 					})
 				}
 	
 			});
 
-			for (index in req.body.location){
-				if (req.body.location[index]){	
+			for (index in req.body.locations){
+				if (req.body.locations[index]){	
 					connection.query('INSERT INTO employee_locations SET ?', {employee_id: req.body.id, location_id: index}, function(err, result){
-						console.log(result);
+						if (err)
+							errors.push(err);
 					})
 				} else {
 					connection.query('DELETE FROM employee_locations where employee_id = ' + req.body.id + ' and location_id= ' + index, function(err, result){
-						console.log(result);
+						if (err)
+							errors.push(err);
 					})
 				}
 			}
+
+			for (index in req.body.categories){
+				if (req.body.categories[index]){	
+					connection.query('INSERT INTO categorizations SET ?', {employee_id: req.body.id, category_id: index}, function(err, result){
+						if (err)
+							errors.push(err);
+					})
+				} else {
+					connection.query('DELETE FROM categorizations where employee_id = ' + req.body.id + ' and category_id= ' + index, function(err, result){
+						if (err)
+							errors.push(err);
+					})
+				}
+			}
+
+			if(errors.length > 0)
+				res.json(errors);
+			else 
+				res.json('success!');
 
 		},
 
