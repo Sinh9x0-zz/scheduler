@@ -6,7 +6,6 @@ module.exports = (function() {
 				if (err) 
 					res.json(err)
 				else {
-					console.log(rows)
 					res.json(rows)
 				}
 			})
@@ -61,7 +60,6 @@ module.exports = (function() {
 					console.log(err);
 					res.json(err);
 				} else {
-					console.log(rows);
 					req.session.user = rows;
 					res.json(rows)
 				}

@@ -4,6 +4,7 @@
 <table class="table">
 	<tr>
 		<th>Location</th>
+		<th>Category</th>
 		<th>Start Time</th>
 		<th>End Time</th>
 		<th>Start Date</th>
@@ -13,17 +14,14 @@
 	</tr>
 	<tr ng-repeat = "shift in adDashCtrl.allShifts">
 		<td ng-bind="shift.name"></td>
+		<td ng-bind="shift.category"></td>
 		<td ng-bind="shift.start_time"></td>
 		<td ng-bind="shift.end_time"></td>
 		<td ng-bind="shift.start_date | date: 'fullDate'"></td>
 		<td ng-bind="shift.end_date | date: 'fullDate'"></td>
 		<td><select>
-				<option ng-repeat="employee in adDashCtrl.allEmployees">{{employee.first_name}} {{employee.last_name}}</option>
+				<option ng-repeat="employee in shift.matchedEmployee">{{employee.first_name}} {{employee.last_name}}</option>
 			</select></td>
 		<td><a ng-click="assign()" href="">Assign</a></td>
 	</tr>
-</table>
-<br>
-<h4>Available Employees</h4>
-<table class="table">
 </table>

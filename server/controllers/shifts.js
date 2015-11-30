@@ -56,15 +56,43 @@ module.exports = (function() {
 		},
 
 		getAll: function(req,res){
-			var query = "SELECT * FROM shifts left join locations on locations.id = shifts.location_id";
+
+			var getEmployees = function(matchQuery, rowIndex, callback){
+				connection.query(matchQuery, function(err, employees){
+					callback(employees, rowIndex);
+				});
+			}
+
+			var query = "SELECT * FROM shifts ";
+			query += "join locations on locations.id = shifts.location_id ";
+			query += "join categories on categories.id = shifts.category_id";
+
 			connection.query(query, function (err, rows){
 				if (err) {
 					console.log(err);
 					res.json(err);
 				} else {
-					console.log(rows);
-					res.json(rows);
+					var matchedEmployees = "";
+					var rowIndex = 0;
+					for (index in rows) {
+						matchedEmployees += "select * from employees ";
+						matchedEmployees += "join categorizations ";
+						matchedEmployees += "on categorizations.employee_id = employees.id ";
+						matchedEmployees += "where categorizations.category_id = " + rows[index].category_id;
+
+						rowIndex = index;
+
+						getEmployees(matchedEmployees, rowIndex, function(employees, oIndex){
+							rows[oIndex].matchedEmployee = employees;
+							if(rows.length - 1 == oIndex){
+								res.json(rows);
+							}
+						});
+
+						matchedEmployees = "";
+					}
 				}
+
 			})
 		}
 	}
