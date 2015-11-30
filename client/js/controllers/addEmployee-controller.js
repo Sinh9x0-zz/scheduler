@@ -1,10 +1,14 @@
-app.controller('addEmployeeController', function(employeeFactory, locationFactory, $location, $routeParams){
+app.controller('addEmployeeController', function(employeeFactory, shiftFactory, locationFactory, $location, $routeParams){
 	var _this = this;
 	_this.newEmployee = {}
 	_this.employee = {}
 
 	locationFactory.getLocations(function(locations){
 		_this.locations = locations;
+	})
+
+	shiftFactory.getCategories(function(categories){
+		_this.categories = categories;
 	})
 
 	_this.addEmployee = function(){
@@ -16,7 +20,10 @@ app.controller('addEmployeeController', function(employeeFactory, locationFactor
 
 	_this.updateEmployeeAvailability = function(){
 		_this.employee.id = $routeParams.id;
-		employeeFactory.updateEmployeeAvailability(_this.employee);
+		employeeFactory.updateEmployeeAvailability(_this.employee, function(updated){
+			console.log('reached', updated);
+			$location.path('/admin/dashboard');
+		});
 	}
 
 });

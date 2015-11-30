@@ -20,6 +20,13 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 
 	employeeFactory.showAllEmployees(function(response){
 		_this.allEmployees = response;
+
+	shiftFactory.getAllShift(function(shifts){
+		_this.allShifts = shifts;
+	})
+
+	employeeFactory.showAllEmployees(function(employees){
+		_this.allEmployees = employees;
 	})
 
 	_this.assign = function(){

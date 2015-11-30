@@ -6,7 +6,6 @@ module.exports = (function() {
 				if (err) 
 					res.json(err)
 				else {
-					console.log(rows)
 					res.json(rows)
 				}
 			})
