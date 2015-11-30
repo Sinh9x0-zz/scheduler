@@ -11,12 +11,19 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 
 	shiftFactory.getAllShift(function(response){
 		_this.allShifts = response;
-		console.log(_this.allShifts);
+		for(var i = 0; i < response.length; i++){
+			shiftFactory.getAllEmployees(response[i], i, function(employees, index){
+				_this.allShifts[index].workers = employees;
+			})
+		}
 	})
 
 	employeeFactory.showAllEmployees(function(response){
 		_this.allEmployees = response;
-		console.log(_this.allEmployees);
 	})
+
+	_this.assign = function(){
+		console.log(_this.assignedEmployee);
+	}
 
 });

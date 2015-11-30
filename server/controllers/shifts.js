@@ -58,14 +58,24 @@ module.exports = (function() {
 		getAll: function(req,res){
 			var query = "SELECT * FROM shifts left join locations on locations.id = shifts.location_id";
 			connection.query(query, function (err, rows){
-				if (err) {
-					console.log(err);
-					res.json(err);
-				} else {
-					console.log(rows);
+				if(rows)
 					res.json(rows);
-				}
+				else
+					res.json(err);
 			})
+		},
+
+		getAllEmployees: function(req,res){
+			var condition1 = "user_availability."+req.body.day+" = 1";
+			var condition2 = "employee_locations.location_id = "+req.body.location_id
+			query = "SELECT employees.id, employees.first_name, employees.last_name, user_availability.mon, user_availability.tue , user_availability.wed, user_availability.thu, user_availability.fri, user_availability.sat, user_availability.sun, locations.name FROM employees left join user_availability on employees.id = user_availability.employee_id left join employee_locations on employees.id = employee_locations.employee_id left join locations on employee_locations.location_id = locations.id where "+ condition1 +" and " +condition2
+			connection.query(query, function (err, workers){
+				if(workers){
+					res.json(workers);
+				}else{
+					res.json(err);
+				}
+			})	
 		}
 	}
 

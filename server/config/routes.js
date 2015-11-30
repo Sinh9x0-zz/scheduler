@@ -52,4 +52,7 @@ module.exports = function(app) {
 		shifts.getAll(req,res);
 	})
 
+	app.post('/getAllEmployees', function(req,res){
+		shifts.getAllEmployees(req,res);
+	})
 };

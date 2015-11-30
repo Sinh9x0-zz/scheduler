@@ -58,10 +58,8 @@ module.exports = (function() {
 			var query = "SELECT * FROM admin where email = '"+req.body.email+"'AND password = '"+req.body.password+"';"
 			connection.query(query, function (err, rows){
 				if (err) {
-					console.log(err);
 					res.json(err);
 				} else {
-					console.log(rows);
 					req.session.user = rows;
 					res.json(rows)
 				}

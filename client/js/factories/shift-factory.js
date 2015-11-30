@@ -20,5 +20,11 @@ app.factory('shiftFactory', function($http){
 		})
 	}
 
+	factory.getAllEmployees = function(shift, index, callback){
+		$http.post('/getAllEmployees', shift).success(function(workers){
+			callback(workers, index);
+		})
+	}
+
 	return factory;
 })
