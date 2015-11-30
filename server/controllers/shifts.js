@@ -68,12 +68,6 @@ module.exports = (function() {
 			query += "join categories on categories.id = shifts.category_id";
 
 			connection.query(query, function (err, rows){
-<<<<<<< HEAD
-				if(rows)
-					res.json(rows);
-				else
-					res.json(err);
-=======
 				if (err) {
 					console.log(err);
 					res.json(err);
@@ -98,8 +92,6 @@ module.exports = (function() {
 						matchedEmployees = "";
 					}
 				}
-
->>>>>>> 18e2dadcbc6da6481b8ae5439f44393362820eb8
 			})
 		},
 

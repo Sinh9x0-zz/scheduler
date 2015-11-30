@@ -12,18 +12,14 @@
 		<th>Available Employees</th>
 		<th>Actions</th>
 	</tr>
-	<tr ng-repeat = "shift in adDashCtrl.allShifts">
+	<tr ng-repeat = "shift in adDashCtrl.allShifts track by shift.id">
 		<td ng-bind="shift.name"></td>
 		<td ng-bind="shift.category"></td>
 		<td ng-bind="shift.start_time"></td>
 		<td ng-bind="shift.end_time"></td>
 		<td ng-bind="shift.start_date | date: 'fullDate'"></td>
 		<td ng-bind="shift.end_date | date: 'fullDate'"></td>
-		<td><select ng-model="adDashCtrl.assignedworker" ng-options="employee.id for employee in shift.workers">
-				<!-- <option ng-repeat="employee in shift.workers" ng-value="employee.id">{{employee.first_name}} {{employee.last_name}}</option> -->
-		<td><select>
-				<option ng-repeat="employee in shift.matchedEmployee">{{employee.first_name}} {{employee.last_name}}</option>
-			</select></td>
-		<td><a ng-click="adDashCtrl.assign(adDashCtrl.assignedEmployee)" href="">Assign</a></td>
+		<td><select ng-options="employee.id for employee in shift.workers track by employee.id" ng-model="shift.selected"></select></td>
+		<td><a ng-click="adDashCtrl.assign(shift)" href="">Assign</a></td>
 	</tr>
 </table>

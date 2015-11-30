@@ -20,6 +20,7 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 
 	employeeFactory.showAllEmployees(function(response){
 		_this.allEmployees = response;
+	})
 
 	shiftFactory.getAllShift(function(shifts){
 		_this.allShifts = shifts;
@@ -29,8 +30,7 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 		_this.allEmployees = employees;
 	})
 
-	_this.assign = function(){
-		console.log(_this.assignedEmployee);
+	_this.assign = function(id){
+		console.log(id);
 	}
-
 });
