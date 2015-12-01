@@ -14,7 +14,6 @@ app.controller('adminLoginController', function(sessionFactory, adminFactory, $l
 			if(sessionUser.length == 0){
 				_this.feedback = "Invalid Credentials";
 				_this.invalid = true;
-				console.log('invalid');
 			} else {				
 				_this.feedback = "You've been logged in successfully!";
 				sessionFactory.getUser(function(sUser){
@@ -22,7 +21,6 @@ app.controller('adminLoginController', function(sessionFactory, adminFactory, $l
 				}); 
 				_this.invalid = false;
 				_this.user = {};
-				console.log('successfully')
 				$location.path('/admin/dashboard');
 			}
 		});

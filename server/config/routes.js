@@ -43,6 +43,7 @@ module.exports = function(app) {
 	app.get('/availability/:id', function(req, res){
 		console.log(req.params.id);
 	});
+	
 	app.get('/destroySession', function(req, res){
 		req.session.destroy();
 		res.json(true);

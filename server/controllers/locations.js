@@ -12,7 +12,6 @@ module.exports = (function() {
 		},
 
 		addLocation: function(req, res){
-			console.log('trying to add location');
 
 			var post1 = {
 				address1: req.body.address1, 
@@ -23,7 +22,9 @@ module.exports = (function() {
 				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
 			} 
-			var query1 = connection.query('INSERT INTO location_addresses SET ?', post1, function(err, result) {
+
+			connection.query('INSERT INTO location_addresses SET ?', post1, function(err, result) {
+				
 					var post2 = {
 						name: req.body.name,
 						phone_number: req.body.phone_number,
@@ -31,11 +32,12 @@ module.exports = (function() {
 						created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 						updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
 					};
-					var query2 = connection.query('INSERT INTO locations SET ?', post2, function(err, result) {
+
+					connection.query('INSERT INTO locations SET ?', post2, function(err, result) {
 						return res.json(result.insertId);
 					});
-					console.log(query1.sql + query2.sql);
-				});			
-			}
+			});
+
 		}
+	}
 })();

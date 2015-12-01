@@ -16,7 +16,6 @@ app.factory('adminFactory', function($http){
 	factory.authenticate = function(user, callback){
 		console.log(user);
 		$http.post('/authenticateAdmin/', user).success(function(sessionUser){
-			console.log('got here');
 			callback(sessionUser);
 		});
 	}

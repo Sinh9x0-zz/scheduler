@@ -52,7 +52,6 @@ module.exports = (function() {
 
 		updateAvailability: function(req, res){
 			var errors = [];
-
 			var post = {}
 			if (req.body.days.mon) {post.mon = req.body.days.mon;} else {post.mon = false;}
 			if (req.body.days.tue) {post.tue = req.body.days.tue;} else {post.tue = false;}
@@ -136,7 +135,7 @@ module.exports = (function() {
 				});
 
 			});
-			
+
 		},
 
 		editEmployee: function(req, res) {
