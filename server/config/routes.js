@@ -55,4 +55,8 @@ module.exports = function(app) {
 	app.post('/getAllEmployees', function(req,res){
 		shifts.getAllEmployees(req,res);
 	})
+
+	app.post('/assign', function(req,res){
+		shifts.assign(req,res);
+	})
 };

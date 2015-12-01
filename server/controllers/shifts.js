@@ -63,7 +63,7 @@ module.exports = (function() {
 				});
 			}
 
-			var query = "SELECT * FROM shifts ";
+			var query = "SELECT shifts.location_id, shifts.id, categories.category, locations.name, shifts.day, shifts.start_date, shifts.end_date, shifts.start_time, shifts.end_time FROM shifts ";
 			query += "join locations on locations.id = shifts.location_id ";
 			query += "join categories on categories.id = shifts.category_id";
 
@@ -106,6 +106,19 @@ module.exports = (function() {
 					res.json(err);
 				}
 			})	
+		},
+
+		assign: function(req,res){
+
+			query = "UPDATE shifts SET employee_id = '" + req.body.selected.id + "' WHERE id = '" +req.body.id+ "';";
+			console.log(query);	
+			connection.query(query, function(err, response){
+				if(err){
+					console.log(err);
+				}else{
+					console.log(response);
+				}
+			})
 		}
 	}
 

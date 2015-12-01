@@ -26,5 +26,11 @@ app.factory('shiftFactory', function($http){
 		})
 	}
 
+	factory.assign = function(shift, callback){
+		$http.post('/assign', shift).success(function(response){
+			callback(reponse);
+		})
+	}
+
 	return factory;
 })

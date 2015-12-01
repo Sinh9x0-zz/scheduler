@@ -24,13 +24,17 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 
 	shiftFactory.getAllShift(function(shifts){
 		_this.allShifts = shifts;
+		console.log(shifts);
 	})
 
 	employeeFactory.showAllEmployees(function(employees){
 		_this.allEmployees = employees;
 	})
 
-	_this.assign = function(id){
-		console.log(id);
+	_this.assign = function(shift){
+		console.log(shift);
+		shiftFactory.assign(shift, function(response){
+			console.log('assign successfully');
+		})
 	}
 });
