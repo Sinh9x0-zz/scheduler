@@ -116,14 +116,27 @@ module.exports = (function() {
 		},
 
 		deleteEmployee: function(req, res) {
-			var query = "DELETE FROM employees WHERE id = ?";
-			connection.query(query, req.params.id, function (err, rows){
-				if (err) 
-					res.json(err)
-				else {
-					res.json(rows)
-				}
-			})
+
+			connection.query("delete from user_availability where employee_id = ?", req.params.id, function(err,rows){
+
+				connection.query("delete from categorizations where employee_id = ?", req.params.id, function(err, rows){
+
+					connection.query("delete from employee_locations where employee_id = ?", req.params.id, function(err, rows){	
+
+						connection.query("delete from employees where id = ?", req.params.id, function (err, rows){
+							if (err) 
+								res.json(err)
+							else {
+								res.json(rows)
+							}
+						});
+
+					});	
+
+				});
+
+			});
+			
 		},
 
 		editEmployee: function(req, res) {
