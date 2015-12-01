@@ -17,6 +17,7 @@ app.controller('adminLoginController', function(sessionFactory, adminFactory, $l
 			} else {				
 				_this.feedback = "You've been logged in successfully!";
 				sessionFactory.getUser(function(sUser){
+					console.log(sUser);
 					_this.currentUser = sUser;
 				}); 
 				_this.invalid = false;

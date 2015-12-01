@@ -59,8 +59,14 @@ module.exports = (function() {
 				if (err) {
 					res.json(err);
 				} else {
-					req.session.user = rows;
-					res.json(rows)
+					var admin = {
+						email: rows[0].email,
+						first_name: rows[0].first_name,
+						last_name: rows[0].last_name,
+						user_level: rows[0].user_level
+					}
+					req.session.user = admin;
+					res.json(admin)
 				}
 			})
 		},
