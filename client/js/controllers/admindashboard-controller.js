@@ -2,12 +2,7 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 	var _this = this;
 	
 	sessionFactory.getUser(function(currentUser){
-		console.log(currentUser);
 		_this.currentUserData = currentUser;
-		_this.currentUser = _this.currentUserData.first_name + " " + _this.currentUserData.last_name;
-		if(currentUser == ' Require log in' ||  _this.currentUserData.length == 0) { //if not log in yet
-			$location.path('/admin');
-		}
 	})
 
 	shiftFactory.getAllShift(function(response){

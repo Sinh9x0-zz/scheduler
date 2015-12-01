@@ -39,6 +39,7 @@ module.exports = (function() {
 					first_name: req.body.first_name,
 					last_name: req.body.last_name, 
 					phone_number: req.body.phone_number,
+					user_level: 1,
 					employee_address_id: result.insertId, 
 					created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 					updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
@@ -125,9 +126,9 @@ module.exports = (function() {
 						connection.query("delete from employees where id = ?", req.params.id, function (err, rows){
 							if (err) 
 								res.json(err)
-							else {
+							else 
 								res.json(rows)
-							}
+							
 						});
 
 					});	
@@ -170,9 +171,24 @@ module.exports = (function() {
 			connection.query(query, function (err, rows){
 				if (err) 
 					res.json(err)
-				else
-					req.session.user = rows;
-					res.json(rows)
+				else {
+
+					if(rows.length == 0){
+						res.json({errors: 'Invalid email or password'});
+					} else {
+
+						var user = {
+							email: rows[0].email,
+							first_name: rows[0].first_name,
+							last_name: rows[0].last_name,
+							user_level: rows[0].user_level
+						}
+
+						req.session.user = user;
+						res.json(user);
+
+					}
+				}
 			})
 		},
 
@@ -180,7 +196,7 @@ module.exports = (function() {
 			if(req.session.user){
 				res.json(req.session.user)
 			} else {
-				res.json('havent logged in')
+				res.json(null)
 			}
 		}
 	}

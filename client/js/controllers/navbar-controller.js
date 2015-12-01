@@ -3,12 +3,14 @@ app.controller('navbarController', function(sessionFactory, employeeFactory, $lo
 
 	sessionFactory.removeLogOutMessage();
 
-	sessionFactory.getUser(function(user){
-		console.log(user);
-		if(user[0].user_level == 9){
-			_this.admin = true;
+	sessionFactory.getUser(function(currentUser){
+		if(currentUser) {
+			if(currentUser.user_level == 9){
+				_this.admin = true;	
+			}
+			_this.currentUserData = currentUser;
 		} else {
-			_this.admin = false;
+			$location.path('/')
 		}
 	})
 

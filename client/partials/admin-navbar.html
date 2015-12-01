@@ -1,4 +1,4 @@
-<div ng-controller="adminNavController as adNavController">
+<div ng-controller="adminNavController as adNavCtrl">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -18,7 +18,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <li><a href="#/dashboard">Switch to User View</a></li>
-              <li><a href="#/">Logout</a></li>
+              <li ng-click="adNavCtrl.logout()"><a href="#/">Logout</a></li>
           </ul>
       </div>
     </div>
