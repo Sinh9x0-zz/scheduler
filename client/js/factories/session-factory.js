@@ -15,20 +15,21 @@ app.factory('sessionFactory', function($http){
 	session.getLogOutMessage = function(callback){
 		callback(session.logoutMessage);
 	}
+
 	session.getErrors = function(callback){
 		callback(session.errors);
 	}
 
 	session.getUser = function(callback){
 		$http.get('/checkSession').success(function(response){
-			if(response == 'havent logged in' || response.length == 0){
-				session.errors = ' Require log in';
-				callback(session.errors);
-			} else {
+			if(response){
 				delete session.errors;
-				callback(response);
+			} else { 
+				session.errors = 'You must be logged in to access that page!';
 			}
-		})
+
+			callback(response);
+		});
  	}
 
 	return session;

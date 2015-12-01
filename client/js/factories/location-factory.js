@@ -7,9 +7,9 @@ app.factory('locationFactory', function($http, $location){
 		});	
 	}
 
-	factory.addLocation = function(location){
-		$http.post('/addLocation/', location).success(function(result){
-			$location.path('/admin/dashboard');
+	factory.addLocation = function(location, callback){
+		$http.post('/addLocation/', location).success(function(id){
+			callback(id);
 		});
 	}
 	

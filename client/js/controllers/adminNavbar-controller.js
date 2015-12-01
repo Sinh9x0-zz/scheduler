@@ -1,9 +1,22 @@
 app.controller('adminNavController', function(sessionFactory, employeeFactory, $location){
  	var _this = this;
- 
+
 	sessionFactory.getUser(function(currentUser){
-		if(currentUser == ' Require log in' || currentUser.length == 0) { //if not log in yet
-			$location.path('/admin');
+		if(currentUser && currentUser.user_level == 9) {
+			_this.admin = true;
+			_this.currentUserData = currentUser;
+		} else if (currentUser) {
+			_this.admin = false;
+			$location.path('/dashboard')
+		} else {
+			$location.path('/')
 		}
 	})
+
+	_this.logout = function(){
+		sessionFactory.destroySession(function(){
+			$location.path('/admin');
+		});
+	}
+
 })

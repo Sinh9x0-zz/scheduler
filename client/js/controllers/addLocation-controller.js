@@ -8,9 +8,7 @@ app.controller('addLocationController', function(locationFactory){
 
 	_this.addLocation = function(){
 		console.log(_this.newLocation);
-		locationFactory.addLocation(_this.newEmployee, function(id){
-			console.log('success!');
-			console.log('id',id);
+		locationFactory.addLocation(_this.newLocation, function(id){
 			$location.path('/admin/dashboard');
 		})
 	}

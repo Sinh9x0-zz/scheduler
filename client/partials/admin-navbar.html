@@ -1,18 +1,27 @@
-<div ng-controller="adminNavController as adNavController">
+<div ng-controller="adminNavController as adNavCtrl">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="#/admin/dashboard">Admin Dashboard</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#/addemployee">Add an Employee</a></li>
-          <li><a href="#/addshift">Add shift</a></li>
-          <li><a href="#/showallemployees">All Employees</a></li>
-          <li><a href="#/dashboard">Switch to User View</a></li>
-          <li><a href="#/">Logout</a></li>
-        </ul>
+          <ul class="nav navbar-nav">
+              <li><a href="#/showallemployees">All Employees</a></li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Add <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                      <li><a href="#/addemployee">Add an Employee</a></li>
+                      <li><a href="#/addshift">Add a Shift</a></li>
+                      <li><a href="#/addlocation">Add a Location</a></li>
+                  </ul>
+             </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="#/dashboard">Switch to User View</a></li>
+              <li ng-click="adNavCtrl.logout()"><a href="#/">Logout</a></li>
+          </ul>
       </div>
     </div>
   </nav>
 </div>
+

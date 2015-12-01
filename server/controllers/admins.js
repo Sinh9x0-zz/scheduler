@@ -54,13 +54,27 @@ module.exports = (function() {
 		},
 
 		login: function(req,res){
-			var query = "SELECT * FROM admin where email = '"+req.body.email+"'AND password = '"+req.body.password+"';"
+			var query = "SELECT * FROM admin where email = '" + req.body.email + "'AND password = '" + req.body.password + "';"
 			connection.query(query, function (err, rows){
 				if (err) {
 					res.json(err);
 				} else {
-					req.session.user = rows;
-					res.json(rows)
+
+					if(rows.length == 0){
+						res.json({errors: 'Invalid email or password'});
+					} else {
+
+						var admin = {
+							email: rows[0].email,
+							first_name: rows[0].first_name,
+							last_name: rows[0].last_name,
+							user_level: rows[0].user_level
+						}
+
+						req.session.user = admin;
+						res.json(admin)
+
+					}
 				}
 			})
 		},
@@ -69,7 +83,7 @@ module.exports = (function() {
 			if(req.session.user){
 				res.json(req.session.user)
 			} else {
-				res.json('havent logged in')
+				res.json(null)
 			}
 		}
 	}

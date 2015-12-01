@@ -9,20 +9,28 @@ app.controller('adminLoginController', function(sessionFactory, adminFactory, $l
 		_this.logoutMessage = response;
 	})
 
+	sessionFactory.getUser(function(currentUser){
+		if (currentUser) {
+			if (currentUser.user_level == 9) {
+				$location.path('/admin/dashboard')
+			} else {
+				$location.path('/dashboard')
+			}
+		} 
+	});
+
 	_this.login = function(){
 		adminFactory.authenticate(_this.user, function(sessionUser){
-			if(sessionUser.length == 0){
-				_this.feedback = "Invalid Credentials";
+			if(sessionUser.errors != undefined){
+				_this.sessionErrors = sessionUser.errors;
 				_this.invalid = true;
-				console.log('invalid');
 			} else {				
-				_this.feedback = "You've been logged in successfully!";
 				sessionFactory.getUser(function(sUser){
 					_this.currentUser = sUser;
 				}); 
+
 				_this.invalid = false;
 				_this.user = {};
-				console.log('successfully')
 				$location.path('/admin/dashboard');
 			}
 		});
