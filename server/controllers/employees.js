@@ -1,7 +1,8 @@
 module.exports = (function() {
 	return {
 		allEmployees: function(req, res) {
-			var query = "SELECT * FROM employees JOIN employee_addresses ON employee_address_id = employee_addresses.id ";
+			var query = "SELECT employees.id, email, first_name, last_name, phone_number ";
+			query += "FROM employees JOIN employee_addresses ON employee_address_id = employee_addresses.id ";
 			connection.query(query, function (err, rows){
 				if (err) 
 					res.json(err)
@@ -12,8 +13,11 @@ module.exports = (function() {
 		},
 
 		getOneEmployee: function(req, res) {
-			var query = "SELECT * FROM employees JOIN employee_addresses ON employee_address_id = employee_addresses.id WHERE employees.id = " + req.params.id;
-			connection.query(query, function(err, rows){
+			var query = "SELECT employees.id, email, first_name, last_name, phone_number, address1, address2, city, zip, state ";
+			query += "FROM employees JOIN employee_addresses ON employee_address_id = employee_addresses.id ";
+			query += "WHERE employees.id = " + req.params.id;
+
+			var c = connection.query(query, function(err, rows){
 					if (err) 
 						res.json(err)
 					else 
@@ -22,42 +26,57 @@ module.exports = (function() {
 		},
 
 		addEmployee: function(req, res) {
+			req.assert('email', 'Invalid email given').notEmpty().isEmail();
+			req.assert('password', 'Password must be between 6 and 20 characters').len(6, 20);
+			req.assert('cpassword', 'Passwords do not match').equals(req.body.password);
+			req.assert('first_name', 'Valid first name is required').notEmpty().isAlpha();
+			req.assert('last_name', 'Valid last name is required').notEmpty().isAlpha();
 
 			req.assert('address1', 'Employee address is required').notEmpty();
-			req.assert('city', 'Cities are required for employee addresses').notEmpty();
-			req.assert('state', 'States are required for employee addresses').notEmpty();
+			req.assert('city', 'City is required').notEmpty();
+			req.assert('state', 'State is required').notEmpty();
+			req.assert('zip', 'Valid zip code required').isNumeric().len(5);
 
-			var errors = req.validationErrors();
+			req.sanitize('phone_number').blacklist('-');
+			req.sanitize('phone_number').toInt();
+			req.assert('phone_number', 'Valid phone number required').len(10, 11);
 
-			console.log(errors);
+			var errors = req.validationErrors(true);
 
-			var post1 = {
-				address1: req.body.address1, 
-				address2: req.body.address2,
-				city: req.body.city, 
-				state: req.body.state,
-				zip: req.body.zip,
-				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
-				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
-			}
+			if(errors){
 
-			var query1 = connection.query('INSERT INTO employee_addresses SET ?', post1, function(err, result) {
-				var post2 = {
-					email: req.body.email, 
-					password: req.body.password, 
-					first_name: req.body.first_name,
-					last_name: req.body.last_name, 
-					phone_number: req.body.phone_number,
-					user_level: 1,
-					employee_address_id: result.insertId, 
+				res.json(errors)
+
+			} else {
+
+				var post1 = {
+					address1: req.body.address1, 
+					address2: req.body.address2,
+					city: req.body.city, 
+					state: req.body.state,
+					zip: req.body.zip,
 					created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 					updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
-				};
+				}
 
-				var query2 = connection.query('INSERT INTO employees SET ?', post2, function(err, result) {
-					return res.json(result.insertId);
+				var query1 = connection.query('INSERT INTO employee_addresses SET ?', post1, function(err, result) {
+					var post2 = {
+						email: req.body.email, 
+						password: req.body.password, 
+						first_name: req.body.first_name,
+						last_name: req.body.last_name, 
+						phone_number: req.body.phone_number,
+						user_level: 1,
+						employee_address_id: result.insertId, 
+						created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
+						updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
+					};
+
+					var query2 = connection.query('INSERT INTO employees SET ?', post2, function(err, result) {
+						return res.json(result.insertId);
+					});
 				});
-			});			
+			}
 		},
 
 		updateAvailability: function(req, res){
@@ -149,30 +168,50 @@ module.exports = (function() {
 		},
 
 		editEmployee: function(req, res) {
-			var post = {
-				email: req.body[0].email, 
-				password: req.body[0].password, 
-				first_name: req.body[0].first_name,
-				last_name: req.body[0].last_name, 
-				employee_address_id: req.body[0].employee_address_id, 
-				phone_number: req.body[0].phone_number, 
-				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
-				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
-			}
 
-			var query1 = connection.query('UPDATE employees SET ? where id=' + req.body[0].id, post, function(err, result){
-				var post2 = {
-					address1: req.body[0].address1,
-					address2: req.body[0].address2,
-					city: req.body[0].city,
-					state: req.body[0].state,
-					zip: req.body[0].zip,
-				};
+			req.assert('email', 'Invalid email given').notEmpty().isEmail();
+			req.assert('first_name', 'Valid first name is required').notEmpty().isAlpha();
+			req.assert('last_name', 'Valid last name is required').notEmpty().isAlpha();
 
-				var query2 = connection.query('UPDATE employee_addresses SET ? where id =' + req.body[0].id, post2, function(err, result) {
-				res.json(result)			
+			req.assert('address1', 'Employee address is required').notEmpty();
+			req.assert('city', 'City is required').notEmpty();
+			req.assert('state', 'State is required').notEmpty();
+			req.assert('zip', 'Valid zip code required').isNumeric().len(5);
+
+			req.sanitize('phone_number').blacklist('-');
+			req.sanitize('phone_number').toInt();
+			req.assert('phone_number', 'Valid phone number required').len(10, 11);
+
+			var errors = req.validationErrors(true);
+
+			if(errors){
+
+				res.json(errors)
+
+			} else {
+
+				var post = {
+					email: req.body.email, 
+					first_name: req.body.first_name,
+					last_name: req.body.last_name, 
+					phone_number: req.body.phone_number, 
+					updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
+				}
+
+				var query1 = connection.query('UPDATE employees SET ? where id=' + req.body.id, post, function(err, result){
+					var post2 = {
+						address1: req.body.address1,
+						address2: req.body.address2,
+						city: req.body.city,
+						state: req.body.state,
+						zip: req.body.zip,
+					};
+
+					var query2 = connection.query('UPDATE employee_addresses SET ? where id =' + req.body.id, post2, function(err, result) {
+						res.json(1)			
+					});
 				});
-			});
+			}
 		},
 		
 		login: function(req,res){

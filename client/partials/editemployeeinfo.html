@@ -1,91 +1,132 @@
 <admin-navbar></admin-navbar>
 
-<style>
-	h2 {
-		padding-bottom: 20px;
-	}
-
-</style>
-
-<h2>Edit Employee</h2>
-
-<form class="form-horizontal">
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="first_name">First name:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="first_name" ng-model="editEmpCtrl.oneEmployee[0].first_name">
+<h1>Edit an Employee</h1> 
+<div class="col-md-4">
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="email">Email</label>
+			<div class="col-md-9">
+				<input type="email" class="form-control" id="email" ng-model="editEmpCtrl.oneEmployee.email">
+			</div>
 		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="last_name">Last Name:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="last_name" ng-model="editEmpCtrl.oneEmployee[0].last_name">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="first_name">First Name</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="first_name" ng-model="editEmpCtrl.oneEmployee.first_name">
+			</div>
 		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="email">Email: </label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="email" ng-model="editEmpCtrl.oneEmployee[0].email">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="last_name">Last Name</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="last_name" ng-model="editEmpCtrl.oneEmployee.last_name">
+			</div>
 		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="phone_number">Password:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="phone_number" ng-model="editEmpCtrl.oneEmployee[0].password">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="address1">Address</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="address1" ng-model="editEmpCtrl.oneEmployee.address1">
+			</div>
 		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="last_name">Address 1:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="last_name" ng-model="editEmpCtrl.oneEmployee[0].address1">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="address2">Address 2</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="address2" ng-model="editTTempCtrl.oneEmployee.address2">
+			</div>
 		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="last_name">Address 2:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="last_name" ng-model="editEmpCtrl.oneEmployee[0].address2">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="city">City</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="city" ng-model="editEmpCtrl.oneEmployee.city">
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="last_name">City:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="last_name" ng-model="editEmpCtrl.oneEmployee[0].city">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="state">State</label>
+			<div class="col-md-9">
+				<select class="form-control" name="state" ng-model="editEmpCtrl.oneEmployee.state">
+					<option value=''>Select a State</option>
+					<option value="AL">Alabama</option>
+					<option value="AK">Alaska</option>
+					<option value="AZ">Arizona</option>
+					<option value="AR">Arkansas</option>
+					<option value="CA">California</option>
+					<option value="CO">Colorado</option>
+					<option value="CT">Connecticut</option>
+					<option value="DE">Delaware</option>
+					<option value="DC">Dist of Columbia</option>
+					<option value="FL">Florida</option>
+					<option value="GA">Georgia</option>
+					<option value="HI">Hawaii</option>
+					<option value="ID">Idaho</option>
+					<option value="IL">Illinois</option>
+					<option value="IN">Indiana</option>
+					<option value="IA">Iowa</option>
+					<option value="KS">Kansas</option>
+					<option value="KY">Kentucky</option>
+					<option value="LA">Louisiana</option>
+					<option value="ME">Maine</option>
+					<option value="MD">Maryland</option>
+					<option value="MA">Massachusetts</option>
+					<option value="MI">Michigan</option>
+					<option value="MN">Minnesota</option>
+					<option value="MS">Mississippi</option>
+					<option value="MO">Missouri</option>
+					<option value="MT">Montana</option>
+					<option value="NE">Nebraska</option>
+					<option value="NV">Nevada</option>
+					<option value="NH">New Hampshire</option>
+					<option value="NJ">New Jersey</option>
+					<option value="NM">New Mexico</option>
+					<option value="NY">New York</option>
+					<option value="NC">North Carolina</option>
+					<option value="ND">North Dakota</option>
+					<option value="OH">Ohio</option>
+					<option value="OK">Oklahoma</option>
+					<option value="OR">Oregon</option>
+					<option value="PA">Pennsylvania</option>
+					<option value="RI">Rhode Island</option>
+					<option value="SC">South Carolina</option>
+					<option value="SD">South Dakota</option>
+					<option value="TN">Tennessee</option>
+					<option value="TX">Texas</option>
+					<option value="UT">Utah</option>
+					<option value="VT">Vermont</option>
+					<option value="VA">Virginia</option>
+					<option value="WA">Washington</option>
+					<option value="WV">West Virginia</option>
+					<option value="WI">Wisconsin</option>
+					<option value="WY">Wyoming</option>
+				</select>
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="last_name">State:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="last_name" ng-model="editEmpCtrl.oneEmployee[0].state">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="zip">Zip</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="zip" ng-model="editEmpCtrl.oneEmployee.zip">
+			</div>
 		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="last_name">Zip:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="last_name" ng-model="editEmpCtrl.oneEmployee[0].zip">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="phone_number">Phone</label>
+			<div class="col-md-9">
+				<input type='tel' class="form-control" id="phone_number" ng-model="editEmpCtrl.oneEmployee.phone_number">
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group">
-		<label class="col-md-2 label-control" for="phone_number">Phone number:</label>
-		<div class="col-md-3">
-			<input type="text" class="form-control" id="phone_number" ng-model="editEmpCtrl.oneEmployee[0].phone_number">
-		</div>
-	</div>
-	<div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-		<button class='btn btn-danger' ng-click ='editEmpCtrl.deleteEmployee(editEmpCtrl.oneEmployee[0].id)'>Delete</button>
-		<button class ='btn btn-primary col-lg-offset-1' ng-click ='editEmpCtrl.editEmployee()'> Edit </button>
-	</div>
-   	</div>
-</form>
+		<div class="form-group">
+	      	<div class="col-md-9 col-md-offset-3">
+				<button class='btn btn-danger' ng-click ='editEmpCtrl.deleteEmployee(editEmpCtrl.oneEmployee.id)'>Delete</button>
+				<button class ='btn btn-primary col-lg-offset-1' ng-click ='editEmpCtrl.editEmployee()'> Edit </button>
+			</div>
+	   	</div>
 
+	</form>
+</div>
+
+<div class="col-md-6">
+	<ul ng-repeat='error in editEmpCtrl.errors'>
+		<li ng-bind='error.msg'></li>
+	</ul>
+</div>
 
 
