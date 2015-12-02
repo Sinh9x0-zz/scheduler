@@ -12,32 +12,45 @@ module.exports = (function() {
 		},
 
 		addLocation: function(req, res){
+			req.assert('address1', 'Location address is required').notEmpty();
+			req.assert('city', 'City is required').notEmpty();
+			req.assert('state', 'State is required').notEmpty();
+			req.assert('zip', 'Valid zip code required').isNumeric().len(5);
+			req.assert('name', 'Location name is required').notEmpty().isAlpha();
+			req.sanitize('phone_number').blacklist('-');
+			req.sanitize('phone_number').toInt();
+			req.assert('phone_number', 'Valid phone number required').len(10, 11);
+			var errors = req.validationErrors(true);
 
-			var post1 = {
-				address1: req.body.address1, 
-				address2: req.body.address2,
-				city: req.body.city, 
-				state: req.body.state,
-				zip: req.body.zip,
-				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
-				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
-			} 
+			if(errors){
 
-			connection.query('INSERT INTO location_addresses SET ?', post1, function(err, result) {
-				
-					var post2 = {
-						name: req.body.name,
-						phone_number: req.body.phone_number,
-						location_address_id: result.insertId, 
-						created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
-						updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
-					};
+				res.json(errors)
+			}
+			else{
+				var post1 = {
+					address1: req.body.address1, 
+					address2: req.body.address2,
+					city: req.body.city, 
+					state: req.body.state,
+					zip: req.body.zip,
+					created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
+					updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
+				} 
+				connection.query('INSERT INTO location_addresses SET ?', post1, function(err, result) {
+					
+						var post2 = {
+							name: req.body.name,
+							phone_number: req.body.phone_number,
+							location_address_id: result.insertId, 
+							created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
+							updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
+						};
 
-					connection.query('INSERT INTO locations SET ?', post2, function(err, result) {
-						return res.json(result.insertId);
-					});
-			});
-
+						connection.query('INSERT INTO locations SET ?', post2, function(err, result) {
+							return res.json(result.insertId);
+						});
+				});
+			}
 		}
 	}
 })();

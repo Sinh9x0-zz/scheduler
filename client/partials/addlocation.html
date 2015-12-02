@@ -48,3 +48,8 @@
 
 		<button class="col-md-2 col-md-push-1 btn btn-primary" ng-click="addLocationCtrl.addLocation()">Add</button>
 	</form>
+<div class="col-md-6">
+	<ul ng-repeat='error in addLocationCtrl.errors'>
+		<li ng-bind='error.msg'></li>
+	</ul>
+</div> 
