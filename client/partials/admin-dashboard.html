@@ -20,7 +20,7 @@
 		<td ng-bind="shift.end_time"></td>
 		<td ng-bind="shift.start_date | date: 'fullDate'"></td>
 		<td ng-bind="shift.end_date | date: 'fullDate'"></td>
-		<td><select ng-options="employee.id for employee in shift.workers track by employee.id" ng-model="shift.selected"></select></td>
+		<td><select ng-options="employee.id for employee in shift.workers track by employee.id" ng-model="shift.selected">dawion</select></td>
 		<td><a ng-click="adDashCtrl.assign(shift)" href="">Assign</a></td>
 	</tr>
 </table>

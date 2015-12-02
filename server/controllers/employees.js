@@ -22,6 +22,15 @@ module.exports = (function() {
 		},
 
 		addEmployee: function(req, res) {
+
+			req.assert('address1', 'Employee address is required').notEmpty();
+			req.assert('city', 'Cities are required for employee addresses').notEmpty();
+			req.assert('state', 'States are required for employee addresses').notEmpty();
+
+			var errors = req.validationErrors();
+
+			console.log(errors);
+
 			var post1 = {
 				address1: req.body.address1, 
 				address2: req.body.address2,
