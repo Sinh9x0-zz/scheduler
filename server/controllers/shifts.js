@@ -65,7 +65,8 @@ module.exports = (function() {
 
 			var query = "SELECT shifts.location_id, shifts.id, categories.category, locations.name, shifts.day, shifts.start_date, shifts.end_date, shifts.start_time, shifts.end_time FROM shifts ";
 			query += "join locations on locations.id = shifts.location_id ";
-			query += "join categories on categories.id = shifts.category_id";
+			query += "join categories on categories.id = shifts.category_id ";
+			query += "where shifts.employee_id IS NULL" 
 
 			connection.query(query, function (err, rows){
 				if (err) {
@@ -98,8 +99,9 @@ module.exports = (function() {
 		getAllEmployees: function(req,res){
 			var condition1 = "user_availability."+req.body.day+" = 1";
 			var condition2 = "employee_locations.location_id = "+req.body.location_id
-			query = "SELECT employees.id, employees.first_name, employees.last_name, user_availability.mon, user_availability.tue , user_availability.wed, user_availability.thu, user_availability.fri, user_availability.sat, user_availability.sun, locations.name FROM employees left join user_availability on employees.id = user_availability.employee_id left join employee_locations on employees.id = employee_locations.employee_id left join locations on employee_locations.location_id = locations.id where "+ condition1 +" and " +condition2
+			query = "SELECT employees.id, employees.first_name, employees.last_name, user_availability.mon, user_availability.tue , user_availability.wed, user_availability.thu, user_availability.fri, user_availability.sat, user_availability.sun, locations.name FROM employees left join user_availability on employees.id = user_availability.employee_id left join employee_locations on employees.id = employee_locations.employee_id left join locations on employee_locations.location_id = locations.id where "+ condition1 +" and " +condition2;
 			connection.query(query, function (err, workers){
+				console.log(err);
 				if(workers){
 					res.json(workers);
 				}else{

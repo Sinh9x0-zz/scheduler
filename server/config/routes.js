@@ -60,4 +60,8 @@ module.exports = function(app) {
 	app.post('/assign', function(req,res){
 		shifts.assign(req,res);
 	})
+
+	// app.post('/getSchedule', function(req,res){
+		
+	// })
 };

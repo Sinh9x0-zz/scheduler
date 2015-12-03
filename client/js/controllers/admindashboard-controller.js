@@ -30,7 +30,18 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 	_this.assign = function(shift){
 		console.log(shift);
 		shiftFactory.assign(shift, function(response){
-			console.log('assign successfully');
+			shiftFactory.getAllShift(function(shifts){
+				_this.allShifts = shifts;
+				console.log(shifts);
+			})
 		})
+	}
+
+	_this.haveWorkers = function(workers){
+		if(workers.length > 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 });

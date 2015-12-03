@@ -7,5 +7,8 @@ app.controller('scheduleController', function(sessionFactory, employeeFactory, s
 			$location.path('/');
 		}
 	})
+	scheduleFactory.getMySchedule(_this.currentUserData.id ,function(response){
+		console.log(response);
+	})
 	
 });

@@ -6,6 +6,11 @@ app.factory('scheduleFactory', function($http){
 			callback(mySchedule);
 		});	
 	}
+	factory.getUserShift = function(data, callback){
+		$http.post('/getSchedule', data).success(function(shifts){
+			callback(shifts);
+		})
+	}
 
 	return factory;
 })
