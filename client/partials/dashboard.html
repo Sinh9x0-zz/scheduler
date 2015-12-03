@@ -14,31 +14,13 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-			<tr>
-				<td>November 01</td>
-				<td><a href ="">Seattle </a> </td>
-				<td>8:00 AM</td>
-				<td> [  x  ]</td>
+			<tr ng-repeat="schedule in schCtrl.mySchedule">
+				<td ng-bind="schedule.start_date| date: fullDate"></td>
+				<td ng-bind="schedule.name"></td>
+				<td ng-bind="schedule.start_time"></td>
+				<td><a href="">Request Time Off</a></td>
 			</tr>
-			<tr>
-				<td>December 01</td>
-				<td><a href ="">Bellevue </a> </td>
-				<td>8:00 AM</td>
-				<td> [  x  ]</td> 
-			</tr>
-			<tr>
-				<td>December 12</td>
-				<td><a href ="">Seattle </a> </td>
-				<td>8:00 AM</td>
-				<td> [  x  ]</td> 
-			</tr>
-			<tr>
-				<td>December 13</td>
-				<td><a href ="">Seattle </a> </td>
-				<td>8:00 AM</td>
-				<td> [  x  ]</td> 
-			</tr>
-		</tbody>
+	  </tbody>
 	</table>
 	<button> Add to Google Calendar </button>
 </div>
@@ -50,36 +32,19 @@
 	    <tr>
 	      <th>Date</th>
 	      <th>Location</th>
+	      <th>Category</th>
 	      <th>Time</th>
 	      <th>Request</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-			<tr>
-				<td>November 01</td>
-				<td><a href ="">Bellevue </a> </td>
-				<td>8:00 AM</td>
-				<td> [  x  ]</td>
+			<tr ng-repeat="shifts in schCtrl.availableShift">
+				<td ng-bind="shifts.start_date | date: fullDate"></td>
+				<td ng-bind="shifts.name"></td>
+				<td ng-bind="shifts.category"></td>
+				<td ng-bind="shifts.start_time"></td>
+				<td><a href="">Request</a></td>
 			</tr>
-			<tr>
-				<td>December 01</td>
-				<td><a href ="">Seattle </a> </td>
-				<td>8:00 AM</td>
-				<td> [  x  ]</td> 
-			</tr>
-			<tr>
-				<td>December 13</td>
-				<td><a href ="">Bellevue </a> </td>
-				<td>8:00 AM</td>
-				<td> [  x  ]</td> 
-			</tr>
-			<tr>
-				<td>December 13</td>
-				<td><a href ="">Seattle </a> </td>
-				<td>8:00 AM</td>
-				<td> [  x  ]</td> 
-			</tr>
-	    </tr>
-	</tbody>
+	  </tbody>
 </table>
 </div>

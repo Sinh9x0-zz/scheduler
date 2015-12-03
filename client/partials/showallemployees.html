@@ -21,7 +21,7 @@
  	 float:left;
  	 background-color: #FAFAFA">
  	 <i class="fa fa-search fa-fw"></i></span>
-  <input type="text" class="form-control" placeholder="Search employee name" ng-model="searchName.name" style ="margin-bottom: 20px; vertical-align: top; float: left; width: 200px ">
+  <input type="text" class="form-control" placeholder="Search" ng-model="searchText" style ="margin-bottom: 20px; vertical-align: top; float: left; width: 200px ">
 </div>
 
 <div>
@@ -36,7 +36,7 @@
 	  </thead>
 	  <tbody>
 
- <tr ng-repeat='employee in allEmplCtrl.allEmployees | filter: searchName' >
+ <tr ng-repeat='employee in allEmplCtrl.allEmployees | filter: searchText' >
 	     <td ng-bind='employee.name'></td>
 	      <td ng-bind='employee.email'></td>
 	      <td ng-bind='employee.phone_number'></td>

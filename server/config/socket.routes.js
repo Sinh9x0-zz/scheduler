@@ -1,7 +1,6 @@
 module.exports = (function(app, io) {
 
 	var users = [];
-
 	// (Listener) On Connection (contant)
 	io.sockets.on('connection', function(socket) { // on connection
 		console.log("Connected - Socket ID: ", socket.id);
@@ -21,8 +20,6 @@ module.exports = (function(app, io) {
 		// io.emit('server_response', {response: "Working"});		
 
 	});
-
-
 })
 
 

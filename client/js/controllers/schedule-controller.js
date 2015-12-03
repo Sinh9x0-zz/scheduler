@@ -1,4 +1,4 @@
-app.controller('scheduleController', function(sessionFactory, employeeFactory, scheduleFactory, $location) {
+app.controller('scheduleController', function(sessionFactory, employeeFactory, scheduleFactory, shiftFactory, $location) {
 	var _this = this;
 
 	sessionFactory.getUser(function(currentUser){
@@ -6,9 +6,13 @@ app.controller('scheduleController', function(sessionFactory, employeeFactory, s
 		if(currentUser == ' Require log in') { //if not log in yet
 			$location.path('/');
 		}
-	})
-	scheduleFactory.getMySchedule(_this.currentUserData.id ,function(response){
-		console.log(response);
-	})
-	
+		scheduleFactory.getMySchedule(_this.currentUserData.id, function(response){
+			_this.mySchedule = response;
+		})
+
+		shiftFactory.getAllShift(function(response){
+			_this.availableShift = response;
+			console.log(response);
+		})
+	})	
 });

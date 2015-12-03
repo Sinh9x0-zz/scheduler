@@ -24,10 +24,8 @@ app.use(express.static(path.join(__dirname, './client')));
 require('./server/config/sql.js');
 require('./server/config/routes.js')(app);
 
-var server = app.listen(8100, function() {
-	console.log('Port Number: 8100');
-});
+var server = app.listen(8100)
 
-// var io = require('socket.io').listen(server);
+var io = require('socket.io').listen(server);
 
-// require('./server/config/socket.routes.js')(app, io);
+require('./server/config/socket.routes.js')(app, io);

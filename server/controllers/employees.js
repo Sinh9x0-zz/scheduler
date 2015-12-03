@@ -226,6 +226,7 @@ module.exports = (function() {
 					} else {
 
 						var user = {
+							id: rows[0].id,
 							email: rows[0].email,
 							first_name: rows[0].first_name,
 							last_name: rows[0].last_name,

@@ -14,7 +14,12 @@ module.exports = (function() {
 		},
 
 		employeeShift: function(req, res){
-			var query = connection.query("select * from employees where id = ?", req.params.id, function(err, records){					
+			var query = "SELECT shifts.location_id, shifts.id, categories.category, locations.name, shifts.day, shifts.start_date, shifts.end_date, shifts.start_time, shifts.end_time FROM shifts ";
+			query += "join locations on locations.id = shifts.location_id ";
+			query += "join categories on categories.id = shifts.category_id ";
+			query +="where shifts.employee_id ="+req.params.id
+			console.log(query);
+			var query = connection.query(query, function(err, records){					
 				if (err){
 					res.json(err);
 				} else {
