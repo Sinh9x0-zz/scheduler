@@ -1,71 +1,77 @@
 <admin-navbar></admin-navbar>
 
 <h1>Add Shift</h1>
+<div class="col-md-4">
+	<form class="form-horizontal">
+	    <div class="form-group row">
+	      <label for="select" class="col-md-3 control-label">Day</label>
+	      <div class="col-md-9">
+	        <select ng-model='addSftCtrl.newShift.day' required class="form-control" id="select">
+				<option value=''>Choose a Day</option>
+				<option value='mon'>Monday</option>
+				<option value='tue'>Tuesday</option>
+				<option value='wed'>Wednesday</option>
+				<option value='thu'>Thursday</option>
+				<option value='fri'>Friday</option>
+				<option value='sat'>Saturday</option>
+				<option value='sun'>Sunday</option>
+	        </select>
+	      </div>
+	     </div>
 
-<form class="form-horizontal">
-    <div class="form-group row">
-      <label for="select" class="col-md-1 control-label">Day</label>
-      <div class="col-md-3">
-        <select ng-model='addSftCtrl.newShift.day' required class="form-control" id="select">
-			<option value=''>Choose a Day</option>
-			<option value='mon'>Monday</option>
-			<option value='tue'>Tuesday</option>
-			<option value='wed'>Wednesday</option>
-			<option value='thu'>Thursday</option>
-			<option value='fri'>Friday</option>
-			<option value='sat'>Saturday</option>
-			<option value='sun'>Sunday</option>
-        </select>
-      </div>
-     </div>
-
-	<div class="form-group row">
-      	<label for="select" class="col-md-1 control-label">Start</label>
-      	<div class="col-md-3">
-			<input required ng-model='addSftCtrl.newShift.start' class="form-control" type="time">
+		<div class="form-group row">
+	      	<label for="select" class="col-md-3 control-label">Start</label>
+	      	<div class="col-md-9">
+				<input required ng-model='addSftCtrl.newShift.start' class="form-control" type="time">
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group row">
-      	<label for="select" class="col-md-1 control-label">End</label>
-      	<div class="col-md-3">
-			<input required ng-model='addSftCtrl.newShift.end'class="form-control" type="time">
+		<div class="form-group row">
+	      	<label for="select" class="col-md-3 control-label">End</label>
+	      	<div class="col-md-9">
+				<input required ng-model='addSftCtrl.newShift.end'class="form-control" type="time">
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group row">
-      	<label for="select" class="col-md-1 control-label">Start Date</label>
-      	<div class="col-md-3">
-			<input required ng-model='addSftCtrl.newShift.startDate' class="form-control" type="date">
+		<div class="form-group row">
+	      	<label for="select" class="col-md-3 control-label">Start Date</label>
+	      	<div class="col-md-9">
+				<input required ng-model='addSftCtrl.newShift.startDate' class="form-control" type="date">
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group row">
-      	<label for="select" class="col-md-1 control-label">End Date</label>
-      	<div class="col-md-3">
-			<input required ng-model='addSftCtrl.newShift.endDate' class="form-control" type="date">
+		<div class="form-group row">
+	      	<label for="select" class="col-md-3 control-label">End Date</label>
+	      	<div class="col-md-9">
+				<input required ng-model='addSftCtrl.newShift.endDate' class="form-control" type="date">
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group row">
-		<label for="location" class="col-md-1 control-label">Category</label>
-		<div class="col-md-3">
-			<select class="form-control" required ng-model='addSftCtrl.newShift.category' 
-				ng-options='category.id as category.category for category in addSftCtrl.categories track by category.id'>
-				<option value=''>Choose a Category</option>
-			</select>
+		<div class="form-group row">
+			<label for="location" class="col-md-3 control-label">Category</label>
+			<div class="col-md-9">
+				<select class="form-control" required ng-model='addSftCtrl.newShift.category' 
+					ng-options='category.id as category.category for category in addSftCtrl.categories track by category.id'>
+					<option value=''>Choose a Category</option>
+				</select>
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group row">
-		<label for="location" class="col-md-1 control-label">Location</label>
-		<div class="col-md-3">
-			<select class="form-control" required ng-model='addSftCtrl.newShift.location' 
-				ng-options='location.id as location.name for location in addSftCtrl.locations track by location.id'>
-				<option value=''>Choose a Location</option>
-			</select>
+		<div class="form-group row">
+			<label for="location" class="col-md-3 control-label">Location</label>
+			<div class="col-md-9">
+				<select class="form-control" required ng-model='addSftCtrl.newShift.location' 
+					ng-options='location.id as location.name for location in addSftCtrl.locations track by location.id'>
+					<option value=''>Choose a Location</option>
+				</select>
+			</div>
 		</div>
-	</div>
 
-	<button class="col-md-2 col-md-offset-1 btn btn-primary" ng-click="addSftCtrl.addShift(addSftCtrl.newshift)">Add Shift</button>
-</form>
+		<button class="col-md-6 col-md-offset-3 btn btn-primary" ng-click="addSftCtrl.addShift()">Add Shift</button>
+	</form>
+</div>
+<div class="col-md-6">
+	<ul ng-repeat='error in addCtrl.errors'>
+		<li ng-bind='error.msg'></li>
+	</ul>
+</div>

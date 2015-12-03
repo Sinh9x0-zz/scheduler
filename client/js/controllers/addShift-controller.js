@@ -12,8 +12,12 @@ app.controller('addShiftController', function($location, locationFactory, shiftF
 	})
 
 	_this.addShift = function(){
-		shiftFactory.addShift(_this.newShift, function(response){
-			$location.path('/admin/dashboard')
+		shiftFactory.addShift(_this.newShift, function(feedback){
+			if(Number.isInteger(feedback)){
+				$location.path('/admin/dashboard')
+			} else {
+				_this.errors = feedback;
+			}
 		})
 	}
 
