@@ -39,25 +39,74 @@ module.exports = (function() {
 		},
 
 		addShift: function(req, res) {
-			var startTime = moment(req.body.start).format("HH:mm:ss");
-			var endTime = moment(req.body.end).format("HH:mm:ss");
+			var now = new Date();
+			console.log(now)
+
+			//validations
+			req.assert('day', 'Day is required').notEmpty();
+			req.assert('category', 'Category is required').notEmpty();
+			req.assert('location', 'Location is required').notEmpty();
+			req.assert('start', 'Start Time is required').notEmpty();
+			req.assert('end', 'End Time required').notEmpty();
+			req.assert('startDate', 'Start Date is required').notEmpty();
+			req.assert('endDate', 'End Date required').notEmpty();
 
 			var post = {
 				day: req.body.day, 
 				category_id: req.body.category,
 				location_id: req.body.location, 
-				start_time: startTime,
-				end_time: endTime,
+				start_time: moment(req.body.start).format("HH:mm:ss"),
+				end_time: moment(req.body.end).format("HH:mm:ss"),
 				start_date: req.body.startDate,
 				end_date: req.body.endDate,
 				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
 			}
 
-			var query = connection.query('INSERT INTO shifts SET ?', post, function(err, result) {
-				console.log(err);
-				return res.json(result.insertId);
-			});			
+			var errors = req.validationErrors(true);
+			console.log(now)
+			console.log(req.body.startDate)
+			if (new Date(req.body.startDate) < now){
+				errors.startDate = {
+					param: 'startDate',
+					msg: 'Start date needs to be in the future',
+					value: undefined
+				}
+			}
+			if(req.body.endDate < req.body.startDate){
+				errors.endDate = {
+					param: 'endDate',
+					msg: 'End date must be after start date',
+					value: undefined
+				}
+			}
+
+			if(req.body.end < req.body.start ){
+				errors.time = {
+					param: 'end',
+					msg: 'Start and end times do not make sense',
+					value: undefined
+				}
+				console.log('end time cannot be before start time');
+			}
+
+			if(errors){
+				console.log(errors)
+				res.json(errors);
+
+			} else {
+
+				var query = connection.query('INSERT INTO shifts SET ?', post, function(err, result) {
+					if (err){
+						res.json(err);
+					}
+					else {
+						res.json(result.insertId);
+					}
+				});	
+
+			}						
+						
 		},
 
 		getAll: function(req,res){
