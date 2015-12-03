@@ -2,7 +2,7 @@ app.controller('editEmployeeController', function($routeParams, employeeFactory,
 	var _this = this;
 	
 	employeeFactory.getOneEmployee($routeParams.id, function(oneEmployee){
-			_this.oneEmployee = oneEmployee;
+			_this.oneEmployee = oneEmployee[0];
 		})
 
 	_this.deleteEmployee = function(id){
@@ -12,8 +12,13 @@ app.controller('editEmployeeController', function($routeParams, employeeFactory,
 	};
 
 	_this.editEmployee = function(){
-		employeeFactory.editEmployee(_this.oneEmployee, function(){
-			$location.path('/showallemployees');
+		employeeFactory.editEmployee(_this.oneEmployee, function(feedback){
+			if(Number.isInteger(feedback)){
+				$location.path('/showallemployees');
+			} else {
+				_this.errors = feedback;
+			}
+
 		})
 	};
 

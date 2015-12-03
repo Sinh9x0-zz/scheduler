@@ -9,6 +9,9 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
 
+var validator = require('express-validator');
+app.use(validator()); 
+
 var session = require('express-session')
 app.use(session({
 	secret: '123',

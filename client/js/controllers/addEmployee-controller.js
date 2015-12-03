@@ -12,9 +12,12 @@ app.controller('addEmployeeController', function(employeeFactory, shiftFactory, 
 	})
 
 	_this.addEmployee = function(){
-		employeeFactory.addEmployee(_this.newEmployee, function(id){
-			console.log('added employee', id);
-			$location.path('/availability/' + id);
+		employeeFactory.addEmployee(_this.newEmployee, function(feedback){
+			if(Number.isInteger(feedback)){
+				$location.path('/availability/' + feedback);
+			} else {
+				_this.errors = feedback;
+			}
 		})
 	}
 
