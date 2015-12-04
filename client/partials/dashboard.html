@@ -32,7 +32,6 @@
 	<table class="table table-hover table-bordered">
 	  <thead>
 	    <tr>
-<<<<<<< Updated upstream
 		     <th>Date</th>
 		     <th>Location</th>
 		     <th>Category</th>
@@ -51,25 +50,5 @@
 			<td><a ng-click="schCtrl.takeShift(shift)" href="">Take Shift</a></td>
 		</tr>
   	</tbody>
-=======
-	      <th>Date</th>
-	      <th>Location</th>
-	      <th>Category</th>
-	      <th>Time</th>
-	      <th>End Time</th>
-	      <th>Request</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-			<tr ng-repeat="shifts in schCtrl.availableShift">
-				<td ng-bind="shifts.start_date | date: fullDate"></td>
-				<td ng-bind="shifts.name"></td>
-				<td ng-bind="shifts.category"></td>
-				<td ng-bind="shifts.start_time | date:'h:mma'"></td>
-				<td ng-bind="shifts.end_time | date:'h:mma'"></td>
-				<td><a href="">Request</a></td>
-			</tr>
-	  </tbody>
->>>>>>> Stashed changes
 </table>
 </div>
