@@ -1,4 +1,6 @@
 <admin-navbar></admin-navbar>
+<script type="text/javascript">
+</script>
 <h2>Welcome {{adDashCtrl.currentUserData.first_name}}</h2>
 <br>
 <h4>Available shifts</h4>
@@ -16,11 +18,11 @@
 	<tr ng-repeat = "shift in adDashCtrl.allShifts track by shift.id">
 		<td ng-bind="shift.name"></td>
 		<td ng-bind="shift.category"></td>
-		<td ng-bind="shift.start_time"></td>
-		<td ng-bind="shift.end_time"></td>
+		<td ng-bind="shift.start_time | date: 'shortTime'"></td>
+		<td ng-bind="shift.end_time | date: 'shortTime'"></td>
 		<td ng-bind="shift.start_date | date: 'fullDate'"></td>
 		<td ng-bind="shift.end_date | date: 'fullDate'"></td>
-		<td><select ng-options="employee.first_name+ ' ' +employee.last_name for employee in shift.workers track by employee.id" ng-model="shift.selected"></select></td>
-		<td><a   ng-show="adDashCtrl.haveWorkers(shift.workers)"  ng-click="adDashCtrl.assign(shift)" href="">Assign</a></td>
+		<td><select ng-options="employee.first_name+ ' ' +employee.last_name for employee in shift.workers track by employee.id" ng-model="shift.selected"><option value=''>Select Employee</option></select></td>
+		<td><a class='assign_shift' id="assignButton" ng-show="adDashCtrl.haveWorkers(shift.workers)"ng-click="adDashCtrl.assign(shift)" href="">Assign</a></td>
 	</tr>
 </table>

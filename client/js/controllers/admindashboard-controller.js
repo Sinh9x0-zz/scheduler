@@ -1,4 +1,4 @@
-app.controller('adminDashController', function(sessionFactory, adminFactory, shiftFactory, employeeFactory, $location) {
+app.controller('adminDashController', function(sessionFactory, adminFactory, shiftFactory, employeeFactory, $location, socket) {
 	var _this = this;
 	
 	sessionFactory.getUser(function(currentUser){
@@ -14,31 +14,26 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 		}
 	})
 
-	employeeFactory.showAllEmployees(function(response){
-		_this.allEmployees = response;
-	})
-
-	shiftFactory.getAllShift(function(shifts){
-		_this.allShifts = shifts;
-		console.log(shifts);
-	})
-
 	employeeFactory.showAllEmployees(function(employees){
 		_this.allEmployees = employees;
 	})
 
 	_this.assign = function(shift){
-		console.log(shift);
-		shiftFactory.assign(shift, function(response){
-			shiftFactory.getAllShift(function(shifts){
-				_this.allShifts = shifts;
-				console.log(shifts);
+		shiftFactory.assign(shift, function(success){
+			socket.emit("assign", "something")
+			shiftFactory.getAllShift(function(response){
+				_this.allShifts = response;
+				for(var i = 0; i < response.length; i++){
+					shiftFactory.getAllEmployees(response[i], i, function(employees, index){
+						_this.allShifts[index].workers = employees;
+					})
+				}
 			})
 		})
 	}
 
 	_this.haveWorkers = function(workers){
-		if(workers.length > 0) {
+		if(workers && workers.length > 0) {
 			return true;
 		} else {
 			return false;

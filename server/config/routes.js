@@ -23,10 +23,8 @@ module.exports = function(app) {
 
 	app.post('/addLocation', locations.addLocation);
 
-	app.post('/authenticateAdmin', function(req, res){
-		admins.login(req,res);
+	app.post('/authenticateAdmin', admins.login);
 
-	});
 	app.get('/destroySession', function(req, res){
 		req.session.destroy();
 		res.json(true);
@@ -40,30 +38,21 @@ module.exports = function(app) {
 
 	app.get('/getCategories', shifts.getCategories);
 
-	app.get('/availability/:id', function(req, res){
-		console.log(req.params.id);
-	});
+	// app.get('/availability/:id', function(req, res){
+	// 	console.log(req.params.id);
+	// });
 	
-	app.get('/destroySession', function(req, res){
-		req.session.destroy();
-		res.json(true);
-	});
+	app.get('/getAllShift', shifts.getAll);
 
-	app.get('/getAllShift', function(req,res){
-		shifts.getAll(req,res);
-	})
+	app.post('/getAllEmployees', shifts.getAllEmployees);
 
-	app.post('/getAllEmployees', function(req,res){
-		shifts.getAllEmployees(req,res);
-	})
+	app.post('/assign', shifts.assign);
 
-	app.post('/assign', function(req,res){
-		shifts.assign(req,res);
-	})
-
+	app.post('/unassign', shifts.unassign);
 	app.post('/editPassword', employees.editPassword);
 
 	// app.post('/getSchedule', function(req,res){
 		
 	// })
+
 };

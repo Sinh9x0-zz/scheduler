@@ -1,4 +1,4 @@
-app.controller('addLocationController', function(locationFactory){
+app.controller('addLocationController', function(locationFactory, $location){
 	var _this = this;
 	_this.newLocation= {}
 

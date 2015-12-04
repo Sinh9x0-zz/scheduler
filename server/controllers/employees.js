@@ -39,7 +39,7 @@ module.exports = (function() {
 			req.assert('zip', 'Valid zip code required').isNumeric().len(5);
 
 			req.sanitize('phone_number').blacklist('-');
-			req.sanitize('phone_number').toInt();
+			// req.sanitize('phone_number').toInt();
 			req.assert('phone_number', 'Valid phone number required').len(10, 11);
 
 			var errors = req.validationErrors(true);
@@ -169,12 +169,16 @@ module.exports = (function() {
 
 					connection.query("delete from employee_locations where employee_id = ?", req.params.id, function(err, rows){	
 
-						connection.query("delete from employees where id = ?", req.params.id, function (err, rows){
-							if (err) 
-								res.json(err)
-							else 
-								res.json(rows)
-							
+						connection.query("update shifts set ? where employee_id =" + req.params.id, {employee_id: null}, function(err, rows){	
+
+							connection.query("delete from employees where id = ?", req.params.id, function (err, rows){
+								if (err) 
+									res.json(err)
+								else 
+									res.json(rows)
+								
+							});
+
 						});
 
 					});	

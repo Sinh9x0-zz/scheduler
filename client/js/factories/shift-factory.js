@@ -8,7 +8,6 @@ app.factory('shiftFactory', function($http){
 	}
 
 	factory.addShift = function(shift, callback){
-		console.log(shift);
 		$http.post('/addShift', shift).success(function(response){
 			callback(response);
 		});	
@@ -28,7 +27,13 @@ app.factory('shiftFactory', function($http){
 
 	factory.assign = function(shift, callback){
 		$http.post('/assign', shift).success(function(response){
-			callback(reponse);
+			callback(response);
+		})
+	}
+
+	factory.unassign = function(shift, callback){
+		$http.post('/unassign', shift).success(function(response){
+			callback(response);
 		})
 	}
 
