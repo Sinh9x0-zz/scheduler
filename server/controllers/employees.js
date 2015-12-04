@@ -39,7 +39,7 @@ module.exports = (function() {
 			req.assert('zip', 'Valid zip code required').isNumeric().len(5);
 
 			req.sanitize('phone_number').blacklist('-');
-			req.sanitize('phone_number').toInt();
+			// req.sanitize('phone_number').toInt();
 			req.assert('phone_number', 'Valid phone number required').len(10, 11);
 
 			var errors = req.validationErrors(true);
