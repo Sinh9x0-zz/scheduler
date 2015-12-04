@@ -76,7 +76,7 @@ module.exports = (function() {
 					if (err) {
 
 						res.json(err);
-						
+
 					} else {			
 
 						console.log(result);
