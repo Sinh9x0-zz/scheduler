@@ -31,5 +31,11 @@ app.factory('shiftFactory', function($http){
 		})
 	}
 
+	factory.unassign = function(shift, callback){
+		$http.post('/unassign', shift).success(function(response){
+			callback(response);
+		})
+	}
+
 	return factory;
 })

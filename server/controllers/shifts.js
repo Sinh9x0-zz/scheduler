@@ -18,7 +18,7 @@ module.exports = (function() {
 			query += "join locations on locations.id = shifts.location_id ";
 			query += "join categories on categories.id = shifts.category_id ";
 			query +="where shifts.employee_id ="+req.params.id
-			console.log(query);
+
 			var query = connection.query(query, function(err, records){					
 				if (err){
 					res.json(err);
@@ -177,6 +177,17 @@ module.exports = (function() {
 		assign: function(req,res){
 
 			query = "UPDATE shifts SET employee_id = '" + req.body.selected.id + "' WHERE id = '" +req.body.id+ "';";
+			connection.query(query, function(err, response){
+				if(err){
+					res.json(err);
+				}else{
+					res.json(response);
+				}
+			})
+		},
+
+		unassign: function(req,res){
+			query = "UPDATE shifts SET employee_id = null WHERE id = '" +req.body.id+ "';";
 			connection.query(query, function(err, response){
 				if(err){
 					res.json(err);
