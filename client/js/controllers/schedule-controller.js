@@ -12,7 +12,6 @@ app.controller('scheduleController', function(sessionFactory, employeeFactory, s
 			} 
 		})
 		socket.on('update_schedule', function(){
-			console.log('how did it not work omg')
 			scheduleFactory.getMySchedule(_this.currentUserData.id, function(response){
 				if (_this.currentUserData.user_level == 1) {
 					console.log(response)
@@ -36,6 +35,7 @@ app.controller('scheduleController', function(sessionFactory, employeeFactory, s
 		var selected = {id: _this.currentUserData.id}
 		shift.selected = selected; 
 		shiftFactory.assign(shift, function(response){
+			socket.emit("shift_taken")
 			scheduleFactory.getMySchedule(_this.currentUserData.id, function(response){
 				if (_this.currentUserData.user_level == 1) {
 					_this.mySchedule = response;
@@ -52,6 +52,7 @@ app.controller('scheduleController', function(sessionFactory, employeeFactory, s
 		var selected = {id: _this.currentUserData.id}
 		shift.selected = selected; 
 		shiftFactory.unassign(shift, function(response){
+			socket.emit("take_time_off")
 			scheduleFactory.getMySchedule(_this.currentUserData.id, function(response){
 				if (_this.currentUserData.user_level == 1) {
 					_this.mySchedule = response;

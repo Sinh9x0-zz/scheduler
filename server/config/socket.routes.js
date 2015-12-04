@@ -9,8 +9,17 @@ module.exports = (function(app, io) {
 		socket.on('disconnect', function() { 
 			console.log("Disconnected - Socket ID: ", socket.id);
 		})
+
 		socket.on('assign', function(){
 			io.emit('update_schedule', {response: "Update Your Schedule"})
+		})
+
+		socket.on('shift_taken', function(){
+			io.emit('update_admin', {response: "Update Your Schedule"})
+		})
+
+		socket.on('take_time_off', function(){
+			io.emit('update_admin', {response: "Update Your Schedule"})
 		})
 
 		// (Action) Emit to Client - Response to Client who emitted 'button_clicked'
