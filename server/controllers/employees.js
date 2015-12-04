@@ -79,7 +79,11 @@ module.exports = (function() {
 						
 					} else {			
 
+						console.log(result);
+
 						var query2 = connection.query('INSERT INTO employees SET ?', post2, function(err, result) {
+
+							console.log(query2.sql);
 
 							if (err) {
 								res.json(err);

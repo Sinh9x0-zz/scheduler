@@ -38,9 +38,9 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 	}
 
 	_this.haveWorkers = function(workers){
-		if(workers.length > 0){
+		if(workers.length > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
