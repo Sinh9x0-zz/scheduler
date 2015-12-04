@@ -169,12 +169,16 @@ module.exports = (function() {
 
 					connection.query("delete from employee_locations where employee_id = ?", req.params.id, function(err, rows){	
 
-						connection.query("delete from employees where id = ?", req.params.id, function (err, rows){
-							if (err) 
-								res.json(err)
-							else 
-								res.json(rows)
-							
+						connection.query("update shifts set ? where employee_id =" + req.params.id, {employee_id: null}, function(err, rows){	
+
+							connection.query("delete from employees where id = ?", req.params.id, function (err, rows){
+								if (err) 
+									res.json(err)
+								else 
+									res.json(rows)
+								
+							});
+
 						});
 
 					});	

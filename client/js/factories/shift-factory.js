@@ -8,7 +8,6 @@ app.factory('shiftFactory', function($http){
 	}
 
 	factory.addShift = function(shift, callback){
-		console.log(shift);
 		$http.post('/addShift', shift).success(function(response){
 			callback(response);
 		});	

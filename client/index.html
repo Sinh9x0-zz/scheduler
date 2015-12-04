@@ -15,7 +15,6 @@
 <body>
 	<div class="container" ng-view=""></div>
 	<!--Socket-->
-	<script src="/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 
 	<!-- Load Libraries -->
 	<script src="js/libraries/jquery-2.1.4.min.js"></script>
@@ -23,6 +22,14 @@
 	<script src="js/libraries/angular-1.4.7.min.js"></script>
 	<script src="js/libraries/angular-route.min.js"></script>
  	<script src="js/libraries/bootstrap.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script type ="text/javascript">
+        
+        $(document).ready(function (){
+            var socket = io.connect();
+        })
+
+    </script>
 
 	<!-- Initialization and Routes -->
 	<script src="js/routes.js"></script>
@@ -35,7 +42,6 @@
 	<script src="js/factories/location-factory.js"></script>
 	<script src="js/factories/shift-factory.js"></script>	
 	
-
 	<!-- Controllers -->
 	<script src="js/controllers/addLocation-controller.js"></script>
 	<script src="js/controllers/addEmployee-controller.js"></script>
@@ -56,11 +62,7 @@
 	<script type='text/javascript' src="js/directives/directives.js"></script>
 
 
-	<script type ="text/javascript">
-        $(document).ready(function (){
-            var socket = io.connect();
-        })
-    </script>
+
 </body>
 
 </html>

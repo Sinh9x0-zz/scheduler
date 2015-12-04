@@ -40,7 +40,6 @@ module.exports = (function() {
 
 		addShift: function(req, res) {
 			var now = new Date();
-			console.log(now)
 
 			//validations
 			req.assert('day', 'Day is required').notEmpty();
@@ -57,23 +56,31 @@ module.exports = (function() {
 				location_id: req.body.location, 
 				start_time: moment(req.body.start).format("HH:mm:ss"),
 				end_time: moment(req.body.end).format("HH:mm:ss"),
-				start_date: req.body.startDate,
-				end_date: req.body.endDate,
+				start_date: moment(req.body.startDate).format("YYYY-MM-DD"),
+				end_date: moment(req.body.endDate).format("YYYY-MM-DD"),
 				created_at: (new Date()).toISOString().substring(0, 19).replace('T', ' '), 
 				updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
 			}
 
 			var errors = req.validationErrors(true);
-			console.log(now)
-			console.log(req.body.startDate)
+
 			if (new Date(req.body.startDate) < now){
+				if(!errors){
+					errors = {}
+				}
+
 				errors.startDate = {
 					param: 'startDate',
 					msg: 'Start date needs to be in the future',
 					value: undefined
 				}
 			}
+
 			if(req.body.endDate < req.body.startDate){
+				if(!errors){
+					errors = {}
+				}
+
 				errors.endDate = {
 					param: 'endDate',
 					msg: 'End date must be after start date',
@@ -82,21 +89,25 @@ module.exports = (function() {
 			}
 
 			if(req.body.end < req.body.start ){
+				if(!errors){
+					errors = {}
+				}
+
 				errors.time = {
 					param: 'end',
 					msg: 'Start and end times do not make sense',
 					value: undefined
 				}
-				console.log('end time cannot be before start time');
 			}
 
 			if(errors){
-				console.log(errors)
+
 				res.json(errors);
 
 			} else {
 
 				var query = connection.query('INSERT INTO shifts SET ?', post, function(err, result) {
+
 					if (err){
 						res.json(err);
 					}
@@ -155,7 +166,6 @@ module.exports = (function() {
 			var condition2 = "employee_locations.location_id = "+req.body.location_id
 			query = "SELECT employees.id, employees.first_name, employees.last_name, user_availability.mon, user_availability.tue , user_availability.wed, user_availability.thu, user_availability.fri, user_availability.sat, user_availability.sun, locations.name FROM employees left join user_availability on employees.id = user_availability.employee_id left join employee_locations on employees.id = employee_locations.employee_id left join locations on employee_locations.location_id = locations.id where "+ condition1 +" and " +condition2;
 			connection.query(query, function (err, workers){
-				console.log(err);
 				if(workers){
 					res.json(workers);
 				}else{

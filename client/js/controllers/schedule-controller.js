@@ -7,7 +7,12 @@ app.controller('scheduleController', function(sessionFactory, employeeFactory, s
 			$location.path('/');
 		}
 		scheduleFactory.getMySchedule(_this.currentUserData.id, function(response){
-			_this.mySchedule = response;
+			if (_this.currentUserData.user_level == 1) {
+				console.log(response)
+				_this.mySchedule = response;
+			} else {
+				console.log('Administrators do not have schedules. They work when they want.')
+			}
 		})
 
 		shiftFactory.getAllShift(function(response){
