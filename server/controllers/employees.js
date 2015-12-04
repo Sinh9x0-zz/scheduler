@@ -231,6 +231,22 @@ module.exports = (function() {
 				});
 			}
 		},
+
+		editPassword: function(req,res){
+			req.assert('newpassword', 'Password must be between 6 and 20 characters').len(6, 20);
+			var errors = req.validationErrors(true);
+			if(errors){
+				res.json(errors)
+			} else {
+				connection.query("UPDATE employees SET password ='"+ req.body.newpassword+ "' where id ='" + req.body.id + "' AND password ='" + req.body.oldpassword + "';", function(err,result){
+					if (err) 
+						res.json(err)
+					else {
+					res.json(result)
+					}
+				})
+			 }
+		},
 		
 		login: function(req,res){
 			var query = "SELECT * FROM employees where email = '"+req.body.email+"'AND password = '"+req.body.password+"';"

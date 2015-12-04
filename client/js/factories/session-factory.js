@@ -32,5 +32,11 @@ app.factory('sessionFactory', function($http){
 		});
  	}
 
+ 	session.editPassword = function(currentUser, callback){
+ 		$http.post('/editPassword', currentUser).success(function(updatedPassword){
+ 			callback(updatedPassword);
+ 		})
+ 	}
+
 	return session;
 })

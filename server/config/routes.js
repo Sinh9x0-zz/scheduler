@@ -61,6 +61,8 @@ module.exports = function(app) {
 		shifts.assign(req,res);
 	})
 
+	app.post('/editPassword', employees.editPassword);
+
 	// app.post('/getSchedule', function(req,res){
 		
 	// })

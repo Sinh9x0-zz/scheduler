@@ -1,12 +1,50 @@
 <employee-navbar></employee-navbar>
-
-  <div>
   <h3>My account </h3>
-  <h4>First name: {{accCtrl.currentUserData.first_name}}</h4>
-  <h4>Last name: {{accCtrl.currentUserData.last_name}}</h4>
-  <h4>Email: {{accCtrl.currentUserData.email}}</h4>
-  <h4>Password: {{accCtrl.currentUserData.password}}</h4> <a href =""> Edit </a>
+
+<div class="col-md-4">
+	<fieldset disabled>
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="first_name">First Name</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="first_name" ng-model="accCtrl.currentUserData.first_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="last_name">Last Name</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="last_name" ng-model="accCtrl.currentUserData.last_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="email">Email</label>
+			<div class="col-md-9">
+				<input type="email" class="form-control" id="email" ng-model="accCtrl.currentUserData.email">
+			</div>
+		</div>
+	</form>
 </div>
 
+	<div class="col-md-4">
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="oldpassword">Old Password</label>
+			<div class="col-md-9">
+				<input type="password" class="form-control" id="oldpassword" ng-model ="accCtrl.currentUserData.oldpassword">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="newpassword">New Password</label>
+			<div class="col-md-9">
+				<input type="password" class="form-control" id="newpassword" ng-model ="accCtrl.currentUserData.newpassword">
+			</div>
+		</div>
 
+		 <div class="form-group">
+	      	<div class="col-md-9 col-md-offset-3">
+				<button class ='btn btn-primary col-lg-offset-3' ng-click ='accCtrl.editPassword(accCtrl.currentUserData)'> Edit </button>
+			</div>
+	   	</div> 
 
+	</form>
+</div>

@@ -8,4 +8,14 @@ app.controller('accountController', function(sessionFactory, employeeFactory, $l
 			$location.path('/')
 		}
 	})
+
+	_this.editPassword = function(data){
+		sessionFactory.editPassword(data, function(password){
+			$location.path('/')
+		})
+	}
+
+	 
+
+
 })
