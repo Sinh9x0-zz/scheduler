@@ -13,7 +13,6 @@ app.controller('addEmployeeController', function(employeeFactory, shiftFactory, 
 
 	_this.addEmployee = function(){
 		employeeFactory.addEmployee(_this.newEmployee, function(feedback){
-			console.log(feedback)
 			if(Number.isInteger(feedback)){
 				$location.path('/availability/' + feedback);
 			} else {
@@ -25,7 +24,6 @@ app.controller('addEmployeeController', function(employeeFactory, shiftFactory, 
 	_this.updateEmployeeAvailability = function(){
 		_this.employee.id = $routeParams.id;
 		employeeFactory.updateEmployeeAvailability(_this.employee, function(updated){
-			console.log('reached', updated);
 			$location.path('/admin/dashboard');
 		});
 	}

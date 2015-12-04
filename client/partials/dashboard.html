@@ -12,7 +12,7 @@
 	      <th>Location</th>
 	      <th>Category</th>
 	      <th>Time</th>
-	      <th>Request</th>
+	      <th>Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -21,7 +21,7 @@
 				<td ng-bind="schedule.name"></td>
 				<td ng-bind="schedule.category"></td>
 				<td ng-bind="schedule.start_time"></td>
-				<td><a href="">Request Off</a></td>
+				<td><a ng-click="schCtrl.giveShift(schedule)" href="">Take Time Off</a></td>
 			</tr>
 	  </tbody>
 	</table>
@@ -36,17 +36,19 @@
 		     <th>Date</th>
 		     <th>Location</th>
 		     <th>Category</th>
-		     <th>Time</th>
+		     <th>Start Time</th>
+		   	 <th>End Time</th>
 		     <th>Action</th>
 	    </tr>
   	</thead>
   	<tbody>
-		<tr ng-repeat="shifts in schCtrl.availableShift">
-			<td ng-bind="shifts.start_date | date: fullDate"></td>
-			<td ng-bind="shifts.name"></td>
-			<td ng-bind="shifts.category"></td>
-			<td ng-bind="shifts.start_time"></td>
-			<td><a href="">Take Shift</a></td>
+		<tr ng-repeat="shift in schCtrl.availableShift">
+			<td ng-bind="shift.start_date | date: fullDate"></td>
+			<td ng-bind="shift.name"></td>
+			<td ng-bind="shift.category"></td>
+			<td ng-bind="shift.start_time"></td>
+			<td ng-bind="shift.end_time"></td>
+			<td><a ng-click="schCtrl.takeShift(shift)" href="">Take Shift</a></td>
 		</tr>
   	</tbody>
 </table>
