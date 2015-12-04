@@ -1,4 +1,4 @@
-app.controller('adminDashController', function(sessionFactory, adminFactory, shiftFactory, employeeFactory, $location) {
+app.controller('adminDashController', function(sessionFactory, adminFactory, shiftFactory, employeeFactory, $location, socket) {
 	var _this = this;
 	
 	sessionFactory.getUser(function(currentUser){
@@ -20,6 +20,7 @@ app.controller('adminDashController', function(sessionFactory, adminFactory, shi
 
 	_this.assign = function(shift){
 		shiftFactory.assign(shift, function(success){
+			socket.emit("assign", "something")
 			shiftFactory.getAllShift(function(response){
 				_this.allShifts = response;
 				for(var i = 0; i < response.length; i++){
