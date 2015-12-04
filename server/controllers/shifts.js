@@ -177,12 +177,11 @@ module.exports = (function() {
 		assign: function(req,res){
 
 			query = "UPDATE shifts SET employee_id = '" + req.body.selected.id + "' WHERE id = '" +req.body.id+ "';";
-			console.log(query);	
 			connection.query(query, function(err, response){
 				if(err){
-					console.log(err);
+					res.json(err);
 				}else{
-					console.log(response);
+					res.json(response);
 				}
 			})
 		}
