@@ -18,10 +18,11 @@ module.exports = (function() {
 			query += "WHERE employees.id = " + req.params.id;
 
 			var c = connection.query(query, function(err, rows){
-					if (err) 
+					if (err) {
 						res.json(err)
-					else 
+					} else { 
 						res.json(rows)
+					}
 			});
 		},
 
@@ -72,9 +73,22 @@ module.exports = (function() {
 						updated_at: (new Date()).toISOString().substring(0, 19).replace('T', ' ')
 					};
 
-					var query2 = connection.query('INSERT INTO employees SET ?', post2, function(err, result) {
-						return res.json(result.insertId);
-					});
+					if (err) {
+
+						res.json(err);
+						
+					} else {			
+
+						var query2 = connection.query('INSERT INTO employees SET ?', post2, function(err, result) {
+
+							if (err) {
+								res.json(err);
+							} else {
+								res.json(result.insertId);
+							}
+
+						});
+					}
 				});
 			}
 		},
