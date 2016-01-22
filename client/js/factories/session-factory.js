@@ -38,6 +38,15 @@ app.factory('sessionFactory', function($http, $location, $q){
  		})
  	}
 
+ 	 session.checkAdmin = function(){
+ 	 	var user = session.checkUser(); 
+		if(user != undefined && response.user_level == 9){
+			return response;
+ 		} else {
+ 			return user;
+ 		}
+ 	}
+
  	session.editPassword = function(currentUser, callback){
  		$http.post('/editPassword', currentUser).success(function(updatedPassword){
  			callback(updatedPassword);
