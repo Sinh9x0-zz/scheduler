@@ -253,11 +253,14 @@ module.exports = (function() {
 		},
 		
 		login: function(req,res){
-			var query = "SELECT * FROM employees where email = '"+req.body.email+"'AND password = '"+req.body.password+"';"
+			var query = "SELECT * FROM users where email = '" + req.body.email;
+			query += "' AND password = '" + req.body.password + "'"; 
+
 			connection.query(query, function (err, rows){
-				if (err) 
+				if (err) {
+					console.log(err)
 					res.json(err)
-				else {
+				} else {
 
 					if(rows.length == 0){
 						res.json({errors: 'Invalid email or password'});
