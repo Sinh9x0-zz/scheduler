@@ -37,10 +37,6 @@ module.exports = function(app) {
 	app.get('/getLocations', locations.getLocations);
 
 	app.get('/getCategories', shifts.getCategories);
-
-	// app.get('/availability/:id', function(req, res){
-	// 	console.log(req.params.id);
-	// });
 	
 	app.get('/getAllShift', shifts.getAll);
 
@@ -49,10 +45,7 @@ module.exports = function(app) {
 	app.post('/assign', shifts.assign);
 
 	app.post('/unassign', shifts.unassign);
+	
 	app.post('/editPassword', employees.editPassword);
-
-	// app.post('/getSchedule', function(req,res){
-		
-	// })
 
 };

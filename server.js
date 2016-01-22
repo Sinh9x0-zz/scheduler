@@ -2,6 +2,7 @@ var path = require('path');
 
 var express = require('express');
 var app = express();
+
 var moment = require('moment');
 moment().format();
 
@@ -24,7 +25,7 @@ app.use(express.static(path.join(__dirname, './client')));
 require('./server/config/sql.js');
 require('./server/config/routes.js')(app);
 
-var server = app.listen(8100)
+var server = app.listen(2100)
 
 var io = require('socket.io').listen(server);
 
