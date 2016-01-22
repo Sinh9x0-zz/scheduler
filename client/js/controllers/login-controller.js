@@ -19,7 +19,7 @@ app.controller('loginController', function(sessionFactory, employeeFactory, $loc
 		} 
 	});
 
-	_this.login = function(){
+	this.login = function(){
 		employeeFactory.authenticate(_this.user, function(sessionUser){
 			if(sessionUser.errors != undefined){
 				_this.sessionErrors = sessionUser.errors;
@@ -33,5 +33,4 @@ app.controller('loginController', function(sessionFactory, employeeFactory, $loc
 		});
 	}
 
-	_this.currentUser = {};
 });

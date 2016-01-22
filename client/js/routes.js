@@ -11,6 +11,19 @@ app.config(function ($routeProvider) {
     .when('/dashboard', {
         templateUrl: 'partials/dashboard.html',
         controller: 'scheduleController',
+        resolve: {
+            user: function(sessionFactory, $location, $q){
+                var deferred = $q.defer();
+
+                if(sessionFactory.checkUser() == undefined) {
+                    deferred.reject('Not logged in'); 
+                    $location.path('/')
+                } else {
+                    deferred.resolve();
+                }   
+                return deferred.promise;
+            }
+        },
         controllerAs: 'schCtrl'
     })
     .when('/addemployee',{

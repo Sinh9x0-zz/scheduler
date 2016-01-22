@@ -1,11 +1,11 @@
 app.controller('scheduleController', function(sessionFactory, employeeFactory, scheduleFactory, shiftFactory,socket, $location) {
 	var _this = this;
-
 	sessionFactory.getUser(function(currentUser){
 		_this.currentUserData = currentUser;
-		if(currentUser == ' Require log in') { //if not log in yet
+		if(sessionFactory.checkUser() == undefined) {
 			$location.path('/');
 		}
+
 		scheduleFactory.getMySchedule(_this.currentUserData.id, function(response){
 			if (_this.currentUserData.user_level == 1) {
 				_this.mySchedule = response;

@@ -1,4 +1,4 @@
-app.factory('sessionFactory', function($http){
+app.factory('sessionFactory', function($http, $location, $q){
 	var session = {};
 
 	session.destroySession = function(callback){
@@ -30,6 +30,12 @@ app.factory('sessionFactory', function($http){
 
 			callback(response);
 		});
+ 	}
+
+ 	session.checkUser = function(){
+ 		$http.get('/checkSession').success(function(response){
+ 			return response;
+ 		})
  	}
 
  	session.editPassword = function(currentUser, callback){
