@@ -10,12 +10,15 @@ app.config(function ($routeProvider) {
             user: function(sessionFactory, $location, $q){
                 var deferred = $q.defer();
 
-                if(sessionFactory.checkUser() == undefined) {
-                    deferred.resolve();
-                } else {
-                    deferred.reject('logged in'); 
-                    $location.path('/dashboard')
-                }   
+                sessionFactory.checkUser(function(user){
+                    if (user == undefined) {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject('logged in'); 
+                        $location.path('/dashboard')
+                    }
+                })
+
                 return deferred.promise;
             }
         },
@@ -85,23 +88,32 @@ app.config(function ($routeProvider) {
 userPromise = function(sessionFactory, $location, $q){
     var deferred = $q.defer();
 
-    if(sessionFactory.checkUser() == undefined) {
-        deferred.reject('Not logged in'); 
-        $location.path('/')
-    } else {
-        deferred.resolve();
-    }   
+    sessionFactory.checkUser(function(user){
+        if(user == undefined) {
+                deferred.reject('Not logged in'); 
+                $location.path('/')
+            } else {
+                deferred.resolve();
+            }   
+    });
+
     return deferred.promise;
 }
 
 adminPromise = function(sessionFactory, $location, $q){
     var deferred = $q.defer();
 
-    if(sessionFactory.checkAdmin() == undefined) {
-        deferred.reject('Not logged in'); 
-        $location.path('/')
-    } else {
-        deferred.resolve();
-    }   
+    sessionFactory.checkUser(function(user){
+         if (user == undefined) {
+                deferred.reject('Not logged in'); 
+                $location.path('/')
+            } else if (user.user_level != 9) {
+                deferred.reject('Not authorized to view this page'); 
+                $location.path('/dashboard')
+            } else {
+                deferred.resolve();
+            }
+    });
+   
     return deferred.promise;
 }

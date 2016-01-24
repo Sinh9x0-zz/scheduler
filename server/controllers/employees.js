@@ -258,7 +258,6 @@ module.exports = (function() {
 
 			connection.query(query, function (err, rows){
 				if (err) {
-					console.log(err)
 					res.json(err)
 				} else {
 

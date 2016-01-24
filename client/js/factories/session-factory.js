@@ -25,26 +25,17 @@ app.factory('sessionFactory', function($http, $location, $q){
 			if(response){
 				delete session.errors;
 			} else { 
-				session.errors = 'You must be logged in to access that page!';
+				session.errors = 'You must be logged in to access that page!';		
 			}
 
 			callback(response);
 		});
  	}
 
- 	session.checkUser = function(){
+ 	session.checkUser = function(callback){
  		$http.get('/checkSession').success(function(response){
- 			return response;
+ 			callback(response);
  		})
- 	}
-
- 	 session.checkAdmin = function(){
- 	 	var user = session.checkUser(); 
-		if(user != undefined && response.user_level == 9){
-			return response;
- 		} else {
- 			return user;
- 		}
  	}
 
  	session.editPassword = function(currentUser, callback){
